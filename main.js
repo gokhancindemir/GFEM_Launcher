@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const os = require('os'); // Başlat menüsünü bulmak için eklendi
 const si = require('systeminformation'); 
+const { autoUpdater } = require('electron-updater');
 
 let win;
 let tray = null;
@@ -67,6 +68,9 @@ app.whenReady().then(() => {
     createWindow();
     scanDisksBackground();
 
+    // Uygulama açılır açılmaz güncellemeleri denetle!
+    autoUpdater.checkForUpdatesAndNotify();
+    
     ipcMain.handle('get-disks', async () => {
         // Artık "cebimde var mı" diye bakmıyor. 
         // Her istek geldiğinde Windows'a SIFIRDAN güncel durumu soruyor!
@@ -241,4 +245,35 @@ ipcMain.on('relaunch-app', () => {
 // İKON KLASÖRÜNÜ AÇMA KOMUTU
 ipcMain.on('open-icon-folder', () => {
     shell.openPath(USER_ICONS_PATH);
+});
+
+// --- OTOMATİK GÜNCELLEME (AUTO-UPDATER) AYARLARI ---
+
+// Güncelleme bulunduğunda kullanıcıya haber ver
+autoUpdater.on('update-available', () => {
+    dialog.showMessageBox({
+        type: 'info',
+        title: 'GFEM Launcher Güncellemesi',
+        message: 'Harika! Yeni bir sürüm bulundu. Arka planda indiriliyor, lütfen çalışmanıza devam edin...'
+    });
+});
+
+// Güncelleme inip kurulmaya hazır olduğunda sor
+autoUpdater.on('update-downloaded', () => {
+    dialog.showMessageBox({
+        type: 'question',
+        title: 'Güncelleme Hazır',
+        message: 'Yeni sürüm başarıyla indirildi. Şimdi yeniden başlatıp kurmak ister misiniz?',
+        buttons: ['Şimdi Yeniden Başlat', 'Daha Sonra']
+    }).then((result) => {
+        // Eğer kullanıcı "Şimdi Yeniden Başlat" (0. buton) derse:
+        if (result.response === 0) {
+            autoUpdater.quitAndInstall();
+        }
+    });
+});
+
+// Olası bir hata durumunda (İsteğe bağlı, hataları görmek için)
+autoUpdater.on('error', (err) => {
+    console.error('Güncelleme hatası:', err);
 });

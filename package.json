@@ -4,6 +4,10 @@
   "description": "GFEM; Launcher",
   "author": "Gökhan Çindemir",
   "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gokhancindemir/gfem_launcher.git"
+  },
   "scripts": {
     "start": "electron .",
     "obfuscate": "npx javascript-obfuscator ./main.js --output ./main.js",
@@ -15,6 +19,13 @@
     "directories": {
       "output": "dist"
     },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "gokhancindemir",
+        "repo": "gfem_launcher"
+      }
+    ],
     "win": {
       "target": "nsis",
       "icon": "assets/icons/icon.ico"
@@ -34,6 +45,7 @@
     }
   },
   "dependencies": {
+    "electron-updater": "^6.8.3",
     "systeminformation": "^5.21.22"
   },
   "devDependencies": {

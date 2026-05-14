@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Launcher_GFEM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sol Menü (Sidebar) -->
+        <aside class="sidebar">
+            
+            <!-- 2. İstek: Sadece GFEM Logosu -->
+            <div class="logo-container">
+                <img src="assets/icons/GFEM.png" alt="GFEM Logo" class="logo-gfem">
+            </div>
+            
+            <div class="sidebar-section">
+                <!-- 3. İstek: Büyük Fontlu LAUNCHER Yazısı -->
+                <span class="section-title-large">LAUNCHER</span>
+                
+                <ul class="nav-menu">
+                    <li class="active" data-target="section-dashboard" data-btn="all">
+                        <span class="icon"><img src="assets/icons/mypc.png" alt="PC"></span> My PC
+                    </li>
+                    <li data-target="section-folders" data-btn="btn-add-folder">
+                        <span class="icon"><img src="assets/icons/folder.png" alt="Folder"></span> Folders
+                    </li>
+                    <li data-target="section-files" data-btn="btn-add-file">
+                        <span class="icon"><img src="assets/icons/file.png" alt="File"></span> Files
+                    </li>
+                    <li data-target="section-apps" data-btn="btn-add-app">
+                        <span class="icon"><img src="assets/icons/apps.png" alt="Apps"></span> Apps
+                    </li>
+                    <li data-target="section-websites" data-btn="btn-add-website">
+                        <span class="icon"><img src="assets/icons/website.png" alt="Web"></span> Websites
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-bottom">
+                <ul>
+                    <li><span class="icon"><img src="assets/icons/settings.png" alt="Settings"></span> Settings</li>
+                    <li><span class="icon"><img src="assets/icons/help.png" alt="Help"></span> Help</li>
+                    <!-- EXIT BUTONU (Rengi ve boyutu standart hale getirildi) -->
+                    <li id="btn-exit"><span class="icon"><img src="assets/icons/exit.png" alt="Exit"></span> Exit</li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-box">
+                    <span class="icon"><img src="assets/icons/search.png" alt="Search"></span>
+                    <input type="text" placeholder="Search through everything in Launcher">
+                </div>
+            </header>
+
+            <div class="action-buttons">
+                <button id="btn-add-folder" class="btn btn-green">
+                    <span class="icon"><img src="assets/icons/folder.png" alt="+F"></span> Add a folder
+                </button>
+                <button id="btn-add-file" class="btn btn-blue">
+                    <span class="icon"><img src="assets/icons/file.png" alt="+f"></span> Add a file
+                </button>
+                <button id="btn-add-app" class="btn btn-orange">
+                    <span class="icon"><img src="assets/icons/apps.png" alt="+a"></span> Add an app
+                </button>
+                <button id="btn-add-website" class="btn btn-purple">
+                    <span class="icon"><img src="assets/icons/website.png" alt="+w"></span> Add a website
+                </button>
+            </div>
+
+            <div class="content-area">
+                
+                <!-- 1. ANA SAYFA / SÜRÜCÜLER BÖLÜMÜ -->
+                <div id="section-dashboard" class="content-section" style="display: block;">
+                    <h2 class="category-title">Local Drives</h2>
+                    <!-- Sahte kartları sildik, JavaScript bu kutunun içini gerçekleriyle dolduracak -->
+                    <div class="drive-grid" id="dynamic-drives">
+                        <!-- Yükleniyor mesajı (çok hızlı geçecek ama yine de şık durur) -->
+                        <span style="color:#888; font-size:14px;">Scanning local drives...</span>
+                    </div>
+                </div>
+
+                <div id="section-folders" class="content-section" style="display: none;">
+                    <h2 class="category-title">Folders</h2>
+                </div>
+
+                <div id="section-files" class="content-section" style="display: none;">
+                    <h2 class="category-title">Files</h2>
+                </div>
+
+                <div id="section-apps" class="content-section" style="display: none;">
+                    <h2 class="category-title">Apps</h2>
+                    <div class="group-container">
+                        <h3 class="group-title">System Utilities</h3>
+                        <div class="card-grid">
+                            <div class="card">
+                                <div class="card-icon">
+                                    <img src="assets/icons/notepad.png" alt="Notepad">
+                                </div>
+                                <div class="card-info">
+                                    <span class="card-title">Notepad</span>
+                                    <span class="card-desc">System Utility</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="section-websites" class="content-section" style="display: none;">
+                    <h2 class="category-title">Websites</h2>
+                    <div class="group-container">
+                        <h3 class="group-title">Search Engines</h3>
+                        <div class="card-grid">
+                            <div class="card">
+                                <div class="card-icon">
+                                    <img src="assets/icons/google.png" alt="Google">
+                                </div>
+                                <div class="card-info">
+                                    <span class="card-title">Google</span>
+                                    <span class="card-desc">www.google.com</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Electron kütüphanesini en başta tanımlıyoruz
+        const { ipcRenderer } = require('electron');
+
+        // --- 1. MENÜ VE BUTON GEÇİŞLERİ ---
+        const menuItems = document.querySelectorAll('.nav-menu li');
+        const sections = document.querySelectorAll('.content-section');
+        const actionButtons = document.querySelectorAll('.action-buttons .btn');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                menuItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                sections.forEach(sec => sec.style.display = 'none');
+                const targetId = item.getAttribute('data-target');
+                document.getElementById(targetId).style.display = 'block';
+
+                const targetBtnId = item.getAttribute('data-btn');
+                
+                actionButtons.forEach(btn => {
+                    if (targetBtnId === 'all') {
+                        btn.style.display = 'flex'; 
+                    } else if (btn.id === targetBtnId) {
+                        btn.style.display = 'flex'; 
+                    } else {
+                        btn.style.display = 'none'; 
+                    }
+                });
+            });
+        });
+
+        // --- 2. DİSK SÜRÜCÜLERİNİ OKUMA VE ÇİZME (NATIVE POWERSHELL SİSTEMİ) ---
+        async function renderDrives() {
+            const driveContainer = document.getElementById('dynamic-drives');
+            
+            try {
+                const disks = await ipcRenderer.invoke('get-disks');
+
+                if (!disks) {
+                    throw new Error("Motor disk bilgisini okuyamadı.");
+                }
+
+                driveContainer.innerHTML = ''; 
+
+                disks.forEach(disk => {
+                    // Biçimlendirilmemiş boş diskleri atla
+                    if (!disk.Size) return; 
+
+                    const letter = disk.DeviceID; // 'C:' veya 'D:'
+                    
+                    // PowerShell bayt cinsinden verir, biz GB'a çeviriyoruz
+                    const totalGB = (disk.Size / 1073741824).toFixed(1);
+                    const freeGB = (disk.FreeSpace / 1073741824).toFixed(1);
+                    
+                    // Doluluk yüzdesini hesaplama
+                    const usedBytes = disk.Size - disk.FreeSpace;
+                    const percent = ((usedBytes / disk.Size) * 100).toFixed(0) + '%'; 
+                    
+                    const isC = letter.toUpperCase().includes('C:');
+                    const iconName = isC ? 'drive_c.png' : 'drive_d.png';
+                    const typeName = isC ? 'System Drive' : 'Local Drive';
+                    const barColor = isC ? '#5C5CFF' : '#1E8E3E';
+
+                    const cardHTML = `
+                        <div class="drive-card">
+                            <div class="drive-header">
+                                <div class="drive-icon">
+                                    <img src="assets/icons/${iconName}" alt="Drive ${letter}">
+                                </div>
+                                <div class="drive-title-area">
+                                    <span class="drive-title">Local Disk (${letter})</span>
+                                    <span class="drive-type">${typeName}</span>
+                                </div>
+                            </div>
+                            <div class="drive-progress">
+                                <div class="progress-track">
+                                    <div class="progress-fill" style="width: ${percent}; background-color: ${barColor};"></div>
+                                </div>
+                            </div>
+                            <div class="drive-details">
+                                <span>${freeGB} GB free of ${totalGB} GB</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    driveContainer.innerHTML += cardHTML;
+                });
+                
+            } catch (error) {
+                console.error("Arayüz hatası:", error);
+                driveContainer.innerHTML = '<p style="color:#E53935; font-size:14px; margin-top:10px;">Cannot load disk information.</p>';
+            }
+        }
+
+        // --- 3. PROGRAMI KAPATMA (EXIT) İŞLEMİ ---
+        const exitButton = document.getElementById('btn-exit');
+        if (exitButton) {
+            exitButton.addEventListener('click', () => {
+                ipcRenderer.send('quit-app');
+            });
+        }
+
+    </script>
+</body>
+</html>

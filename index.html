@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GFEM_Launcher</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            
+            <div id="live-clock" class="live-clock">
+                <div id="clock-date" class="clock-date"></div>
+                <div id="clock-time" class="clock-time"></div>
+            </div>
+
+            <div class="logo-container">
+                <img src="assets/icons/GFEM.png" alt="GFEM Logo" class="logo-gfem">
+            </div>
+            
+            <div class="sidebar-section">
+                <span class="section-title-large">LAUNCHER</span>
+                <ul class="nav-menu">
+                    <li class="active" data-target="section-dashboard" data-btn="all"><span class="icon"><img src="assets/icons/mypc.png" alt="PC"></span> My PC</li>
+                    <li data-target="section-folders" data-btn="btn-add-folder"><span class="icon"><img src="assets/icons/folder.png" alt="Folder"></span> Folders</li>
+                    <li data-target="section-files" data-btn="btn-add-file"><span class="icon"><img src="assets/icons/file.png" alt="File"></span> Files</li>
+                    <li data-target="section-apps" data-btn="btn-add-app"><span class="icon"><img src="assets/icons/apps.png" alt="Apps"></span> Apps</li>
+                    <li data-target="section-websites" data-btn="btn-add-website"><span class="icon"><img src="assets/icons/website.png" alt="Web"></span> Websites</li>
+                    <!-- YEPYENİ DEVICES SEKMESİ -->
+                    <li data-target="section-devices" data-btn="btn-add-device"><span class="icon"><img src="assets/icons/device.png" alt="Devices"></span> Devices</li>
+                </ul>
+            </div>
+            <div class="sidebar-bottom">
+                <ul>
+                    <li data-target="section-settings" data-btn="none">
+                        <span class="icon"><img src="assets/icons/settings.png" alt="Settings"></span> Settings
+                    </li>
+                    <li data-target="section-help" data-btn="none">
+                        <span class="icon"><img src="assets/icons/help.png" alt="Help"></span> Help
+                    </li>
+                    <li id="btn-exit">
+                        <span class="icon"><img src="assets/icons/exit.png" alt="Exit"></span> Exit
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <div class="search-box" style="margin-bottom: 0; flex-grow: 1; max-width: 60%;">
+                    <span class="icon"><img src="assets/icons/search.png" alt="Search"></span>
+                    <input type="text" placeholder="Search through everything in Launcher">
+                </div>
+                <div class="view-toggle">
+                    <button id="btn-view-grid" class="view-btn active" title="Grid Görünümü">⊞</button>
+                    <button id="btn-view-list" class="view-btn" title="Liste Görünümü">≡</button>
+                </div>
+            </header>
+
+            <div class="action-buttons">
+                <button id="btn-add-folder" class="btn btn-green"><span class="icon"><img src="assets/icons/folder.png"></span> Add a folder</button>
+                <button id="btn-add-file" class="btn btn-blue"><span class="icon"><img src="assets/icons/file.png"></span> Add a file</button>
+                <button id="btn-add-app" class="btn btn-orange"><span class="icon"><img src="assets/icons/apps.png"></span> Add an app</button>
+                <button id="btn-add-website" class="btn btn-purple"><span class="icon"><img src="assets/icons/website.png"></span> Add a website</button>
+                <button id="btn-add-device" class="btn btn-dark"><span class="icon"><img src="assets/icons/device.png"></span> Add a device</button>
+            </div>
+
+            <div class="content-area">
+                <div id="section-dashboard" class="content-section" style="display: block;"><div class="mini-dashboard" id="mini-dashboard" style="display: none;"></div> <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;"><h2 class="category-title" style="margin-bottom: 0;">Local Drives</h2><button id="btn-refresh-drives" class="btn btn-blue" style="padding: 6px 15px; font-size: 13px;">🔄 Refresh</button></div><div class="drive-grid" id="dynamic-drives"></div></div>
+                <div id="section-folders" class="content-section" style="display: none;"><h2 class="category-title">Folders</h2></div>
+                <div id="section-files" class="content-section" style="display: none;"><h2 class="category-title">Files</h2></div>
+                <div id="section-apps" class="content-section" style="display: none;"><h2 class="category-title">Apps</h2></div>
+                <div id="section-websites" class="content-section" style="display: none;"><h2 class="category-title">Websites</h2></div>
+                <div id="section-devices" class="content-section" style="display: none;"><h2 class="category-title">Devices</h2></div>
+
+                <!-- SETTINGS İÇERİĞİ -->
+                <div id="section-settings" class="content-section" style="display: none;">
+                    <h2 class="category-title">Settings</h2>
+                    
+                    <div class="settings-container">
+                        <!-- GÖRÜNÜM AYARLARI -->
+                        <div class="settings-card">
+                            <h3><span class="icon"><img src="assets/icons/appearance.png"></span> Appearance</h3>
+                            <div class="setting-item">
+                                <label>Font Family</label>
+                                <select id="setting-font" class="setting-control">
+                                    <option value="'Montserrat', sans-serif">Montserrat (Default)</option>
+                                    <option value="'AptosMono', sans-serif">AptosMono</option>
+                                    <option value="'Arial', sans-serif">Arial</option>
+                                    <option value="'Century Gothic', sans-serif">Century Gothic</option>
+                                    <option value="'Comic Sans MS', sans-serif">Comic Sans MS</option>
+                                    <option value="'FiraSans', sans-serif">FiraSans</option>
+                                    <option value="'Inter', sans-serif">Inter</option>
+                                    <option value="'Segoe UI', sans-serif">Segoe UI</option>
+                                    <option value="'Tahoma', sans-serif">Tahoma</option>
+                                    <option value="'Times New Roman', sans-serif">Times New Roman</option>
+                                    <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+                                    <option value="'Verdana', sans-serif">Verdana</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label>Theme Mode</label>
+                                <select id="setting-theme" class="setting-control">
+                                    <option value="light">Light Mode</option>
+                                    <option value="dark">Dark Mode</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label>Accent Color</label>
+                                <select id="setting-accent-color" class="setting-control">
+                                    <option value="#5C5CFF">GFEM Purple (Default)</option>
+                                    <option value="#007bff">Ocean Blue</option>
+                                    <option value="#28a745">Emerald Green</option>
+                                    <option value="#fd7e14">Sunset Orange</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- DİL VE SİSTEM -->
+                        <div class="settings-card">
+                            <h3><span class="icon"><img src="assets/icons/language_system.png"></span> Language & System</h3>
+                            <div class="setting-item">
+                                <label>System Language</label>
+                                <select id="setting-lang" class="setting-control">
+                                    <option value="tr">Türkçe</option>
+                                    <option value="en">English</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label>Run on Startup</label>
+                                <select id="setting-autostart" class="setting-control">
+                                    <option value="false">Disabled</option>
+                                    <option value="true">Enabled</option>
+                                 </select>
+                            </div>
+                        </div>
+
+                        <!-- HIZLI ERİŞİM VE ARAÇLAR -->
+                        <div class="settings-card">
+                            <h3><span class="icon"><img src="assets/icons/tools.png"></span> Tools</h3>
+                            <div class="setting-item">
+                                <button id="btn-open-icons" class="btn-settings-action">
+                                    <span>📂</span> Open Icons Folder
+                                </button>
+                                <button id="btn-backup" class="btn btn-settings-action">
+                                    <span>⤵️</span> Backup Shortcuts Data
+                                </button>
+                                <button id="btn-restore" class="btn btn-settings-action">
+                                    <span>⤴️</span>Restore Shortcuts Data
+                                </button>
+                                <button id="btn-reset" class="btn btn-settings-action" style="margin-top: 20px; background-color: #d93025; color: white; border-color: #d93025;">
+                                    <span>⤴⚠️</span>Reset to Defaults
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- HAKKINDA -->
+                        <div class="settings-card">
+                            <h3><span class="icon"><img src="assets/icons/about.png"></span> About</h3>
+                            <div class="about-box">
+                                <img src="assets/icons/GFEM.png" class="about-logo">
+                                <p style="font-size: 12px; font-weight: 700; color: #444;">GFEM_Launcher</p>
+                                <span class="version-tag">v1.0.0</span>
+                                <p style="font-size: 10px; color: #888; margin-top: 10px;">Designed by GFEM Team for maximum productivity.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HELP İÇERİĞİ -->
+
+                <!-- YARDIM BÖLÜMÜ BAŞLANGICI -->
+<div id="section-help" class="content-section" style="display: none;">
+    <h2 class="category-title">Help & Information</h2>
+
+    <!-- 1. Uygulama Hakkında -->
+    <div class="settings-card">
+    <div class="settings-card-header">
+        <h3>About Application</h3>
+    </div>
+    <div style="margin-top: 10px; font-size: 13px;">
+        <p>Version 1.0.4 (May 2026):</p>
+        <p>Designer: Designed by GFEM Team for maximum productivity.</p>
+    </div>
+</div>
+
+    <!-- 2. User Guide & FAQ - Detaylandırılmış Versiyon -->
+    <div class="settings-card" style="margin-top: 20px;">
+        <div class="settings-card-header">
+            <h3>User Guide & FAQ</h3>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
+            <!-- Sütun 1: Kısayol İşlemleri -->
+            <div>
+                <h4 style="color: var(--accent-color); margin-bottom: 8px;">📌 Shortcut Operations</h4>
+                <ul style="font-size: 13px; line-height: 1.6; padding-left: 18px; list-style-type: '👉 ';">
+                    <li class="help-item">Adding:<br>You can easily add and categorize your content using the 'Add XXX' buttons in the top menu.(Shortcut names are limited to a maximum of 15 characters).</li>
+                    <li class="help-item">Editing:<br>You can right-click any card to modify.</li>
+                    <li class="help-item">Visualization:<br>You can assign images in .png formats as icons using the 'Change Icon' option.</li> 
+                    <li class="help-item">Right-Click Menu:<br>Right-click on any shortcut card to access full control. Through this context menu, you can:</li>
+                </ul>
+                        <ul style="font-size: 13px; line-height: 1.6; padding-left: 60px; list-style-type: '🔹 ';">
+                            <li>Open the file location,</li>
+                            <li>Rename the shortcut,</li>
+                            <li>Move it to a different tab or group,</li>
+                            <li>Assign a custom icon to the card,</li>
+                            <li>Delete the shortcut.</li>
+                        </ul>
+            </div>
+
+            <!-- Sütun 2: Sistem ve Donanım -->
+            <div>
+                <h4 style="color: var(--accent-color); margin-bottom: 8px;">💻 System & Hardware</h4>
+                <ul style="font-size: 13px; line-height: 1.6; padding-left: 18px; list-style-type: '👉 ';">
+                    <li class="help-item">Drive Tracking:<br>You can monitor the occupancy rates of your drives live in the 'My PC' tab.Data is updated on every entry or by clicking the 'Refresh' button.</li>
+                    <li class="help-item">Auto-Start:<br>Enable 'Run on Startup' from Settings to have the program ready when your computer turns on.</li>
+                </ul>
+            </div>
+
+            <!-- Sütun 3: Görünüm ve Kişiselleştirme -->
+            <div>
+                <h4 style="color: var(--accent-color); margin-bottom: 8px;">🎨 Appearance & Personalization</h4>
+                <ul style="font-size: 13px; line-height: 1.6; padding-left: 18px; list-style-type: '👉 ';">
+                    <li class="help-item">Font Family:<br>You can choose from professional fonts like Montserrat or Roboto to improve readability.</li>
+                    <li class="help-item">Theme Mode:<br>You can use 'Dark Mode' to reduce eye strain or 'Light Mode' for a classic look.</li>
+                    <li class="help-item">Accent Color:<br>Personalize the active menus, buttons, and lines of the application with your favorite color.</li>
+                    <li class="help-item">Window Behavior & Quick Minimize:<br>To ensure a seamless workflow and allow consecutive clicks, the Launcher window is designed to always stay on top of other applications. Once you are done, simply right-click on any empty space within the interface to instantly minimize the window to the taskbar.</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+
+        <!-- Sık Sorulan Sorular -->
+        <div style="font-size: 13px;">
+            <h4 style="color: var(--accent-color); margin-bottom: 8px;">❓ Frequently Asked Questions</h4>
+            <p class="help-faq" style="margin-top: 10px;">Q: Will my shortcuts be deleted if I uninstall?<br>
+            A: No, your data is stored safely. We recommend backing up before formatting.</p>
+            
+            <p class="help-faq" style="margin-top: 10px;">Q: Why can't I see the icons?<br>
+            A: The source file or icon path might have changed. Re-select the icon to fix it.</p>
+            
+            <p class="help-faq" style="margin-top: 10px;">Q: How do I reset the program completely?<br>
+            A: You can clear all data and preferences using the 'Reset to Defaults' button in the Settings menu.</p>
+
+            <p class="help-faq" style="margin-top: 10px;">Q: Will my appearance settings be reset when I close the program?<br>
+            A: No, your selected font, theme, and color settings are saved to local storage and are loaded according to your preferences every time the application starts.</p>
+
+            <p class="help-faq" style="margin-top: 10px;">Q: How can I reorganize shortcuts and change their groups?<br>
+            A: You can rearrange shortcuts by dragging them left or right within a group, or move them to a different group by dragging them onto the desired group header.</p>
+
+            <p class="help-faq" style="margin-top: 10px;">Q: Can I create shortcuts by dragging and dropping files from outside the app?<br>
+            A: No. For security and system stability, dragging and dropping external files is disabled. Please use the 'Add' buttons within the menu to create new shortcuts.</p>
+
+        </div>
+    </div>
+
+    <!-- 3. Destek -->
+        <div class="settings-card" style="margin-top: 20px;">
+            <h3 style="color: var(--accent-color);">Destek</h3>
+            <div class="support-container">
+                <button id="btn-support" class="btn-support" onclick="sendSupportMail()">
+                    <span>📧</span>Report Bug / Send Feedback
+                </button>
+            </div>
+        </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- MODALLAR -->
+    <div id="add-modal" class="modal"><div class="modal-content"><div class="modal-header"><h3>Add New Folder</h3></div><div class="modal-body"><div class="input-wrapper"><label>Folder Path</label><div class="path-row"><input type="text" id="input-path" placeholder="Click 'Browse' to select a folder..." readonly><button id="btn-browse" class="modal-btn action">Browse</button></div></div><div class="input-wrapper"><label>Shortcut Name</label><input type="text" id="input-name" placeholder="Auto-fills after selecting a folder..."maxlength="15"></div><div class="input-wrapper"><label>Group</label><select id="select-group"><option value="NEW_GROUP">+ Create New Group...</option></select><input type="text" id="input-new-group" placeholder="New Group Name" style="display:none; margin-top:10px;"></div></div><div class="modal-footer"><button id="btn-modal-cancel" class="modal-btn secondary">Cancel</button><button id="btn-modal-save" class="modal-btn primary">Save</button></div></div></div>
+
+    <div id="modal-add-file" class="modal" style="display: none;"><div class="modal-content"><div class="modal-header"><h3>Add New File</h3></div><div class="modal-body"><div class="input-wrapper"><label>File Path</label><div class="path-row"><input type="text" id="input-file-path" placeholder="Click 'Browse' to select a file..." readonly><button id="btn-browse-file" class="modal-btn action">Browse</button></div></div><div class="input-wrapper"><label>Shortcut Name</label><input type="text" id="input-file-name" placeholder="Auto-fills after selecting a file..."maxlength="15"></div><div class="input-wrapper"><label>Group</label><select id="select-file-group"><option value="NEW_GROUP">+ Create New Group...</option></select><input type="text" id="input-new-file-group" placeholder="New Group Name" style="display:none; margin-top:10px;"></div></div><div class="modal-footer"><button id="btn-cancel-file" class="modal-btn secondary">Cancel</button><button id="btn-save-file" class="modal-btn primary">Save</button></div></div></div>
+
+    <div id="modal-add-app" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Add New App</h3>
+        </div>
+        <div class="modal-body">
+            
+            <div class="input-wrapper">
+                <label>Select an App</label>
+                <input type="text" id="input-app-search" placeholder="Type to search installed apps...">
+                <datalist id="system-apps-list"></datalist>
+            </div>
+
+            <div class="input-wrapper">
+                <select id="system-app-select">
+                    <option value="">-- or Select System App --</option>
+                    <option value="calc">Calculator</option>
+                    <option value="notepad">Notepad</option>
+                    <option value="mspaint">Paint</option>
+                    <option value="ms-screenclip:">Snipping Tool</option>
+                    <option value="explorer">File Explorer</option>
+                    <option value="write">WordPad</option>
+                    <option value="outlookcal:">Calendar</option>
+                    <option value="outlookmail:">Mail</option>
+                    <option value="msedge">Microsoft Edge</option>
+                    <option value="wmplayer">Media Player</option>
+                    <option value="dellsupportassist:">Dell SupportAssist</option>
+                </select>
+            </div>
+
+            <div class="input-wrapper">
+                <label>Manual App Path / Command</label>
+                <input type="text" id="input-app-path" placeholder="e.g., C:/... or type command">
+            </div>
+
+            <div class="input-wrapper">
+                <label>Shortcut Name</label>
+                <input type="text" id="input-app-name" placeholder="Auto-fills after selecting an app..." maxlength="15">
+            </div>
+
+            <div class="input-wrapper">
+                <label>Group</label>
+                <select id="select-app-group">
+                    <option value="NEW_GROUP">+ Create New Group...</option>
+                </select>
+                <input type="text" id="input-new-app-group" placeholder="New Group Name" style="display:none; margin-top:10px;">
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button id="btn-cancel-app" class="modal-btn secondary">Cancel</button>
+            <button id="btn-save-app" class="modal-btn primary">Save</button>
+        </div>
+    </div>
+</div>
+
+    <div id="modal-add-website" class="modal" style="display: none;"><div class="modal-content"><div class="modal-header"><h3>Add New Website</h3></div><div class="modal-body"><div class="input-wrapper"><label>Website URL</label><input type="text" id="input-website-url" placeholder="e.g., www.youtube.com"></div><div class="input-wrapper"><label>Shortcut Name</label><input type="text" id="input-website-name" placeholder="Type a name for this site..."maxlength="15"></div><div class="input-wrapper"><label>Group</label><select id="select-website-group"><option value="NEW_GROUP">+ Create New Group...</option></select><input type="text" id="input-new-website-group" placeholder="New Group Name" style="display:none; margin-top:10px;"></div></div><div class="modal-footer"><button id="btn-cancel-website" class="modal-btn secondary">Cancel</button><button id="btn-save-website" class="modal-btn primary">Save</button></div></div></div>
+
+    <div id="modal-add-device" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header"><h3>Add Network Device</h3></div>
+            <div class="modal-body">
+                <div class="input-wrapper">
+                    <label>Device IP / URL</label>
+                    <input type="text" id="input-device-url" placeholder="e.g., 192.168.1.1">
+                </div>
+                <div class="input-wrapper"><label>Shortcut Name</label><input type="text" id="input-device-name" placeholder="Type device name..."maxlength="15"></div>
+                <div class="input-wrapper">
+                    <label>Group</label>
+                    <select id="select-device-group"><option value="NEW_GROUP">+ Create New Group...</option></select>
+                    <input type="text" id="input-new-device-group" placeholder="New Group Name" style="display:none; margin-top:10px;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-cancel-device" class="modal-btn secondary">Cancel</button>
+                <button id="btn-save-device" class="modal-btn primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-rename-group" class="modal" style="display: none;"><div class="modal-content"><div class="modal-header"><h3>Rename Group</h3></div><div class="modal-body"><input type="text" id="input-rename-group-name" placeholder="Type new group name..."></div><div class="modal-footer"><button id="btn-cancel-rename-group" class="modal-btn secondary">Cancel</button><button id="btn-save-rename-group" class="modal-btn primary">Save</button></div></div></div>
+    <div id="rename-modal" class="modal"><div class="modal-content"><div class="modal-header"><h3 id="rename-title">Rename</h3></div><div class="modal-body"><input type="text" id="input-rename-name"></div><div class="modal-footer"><button onclick="document.getElementById('rename-modal').style.display='none'" class="modal-btn secondary">Cancel</button><button id="btn-rename-save" class="modal-btn primary">Save</button></div></div></div>
+    <div id="delete-modal" class="modal"><div class="modal-content"><div class="modal-header"><h3 id="delete-modal-title">Delete</h3></div><div class="modal-body"><p>Delete this shortcut?</p></div><div class="modal-footer"><button onclick="document.getElementById('delete-modal').style.display='none'" class="modal-btn secondary">Cancel</button><button id="btn-delete-confirm" class="modal-btn primary" style="background-color: #d93025;">OK</button></div></div></div>
+    <div id="move-new-group-modal" class="modal"><div class="modal-content"><div class="modal-header"><h3>Move to Group</h3></div><div class="modal-body"><input type="text" id="input-move-new-group-name" placeholder="New Group Name"></div><div class="modal-footer"><button onclick="document.getElementById('move-new-group-modal').style.display='none'" class="modal-btn secondary">Cancel</button><button id="btn-move-new-group-save" class="modal-btn primary">Move</button></div></div></div>
+
+// --- DIŞARIDAN DOSYA ATILMASINI ENGELLEYEN, AMA KARTLARI BOZMAYAN YENİ KALKAN ---
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    window.addEventListener(eventName, (e) => {
+        // Sadece DIŞARIDAN gelen dosyaları (Files) hedef alıyoruz
+        // Bu sayede kendi kartlarının yer değiştirmesi bozulmaz
+        if (e.dataTransfer && e.dataTransfer.types.includes('Files')) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // İmleci her yerde kırmızı yasak işaretine zorlar
+            e.dataTransfer.effectAllowed = 'none';
+            e.dataTransfer.dropEffect = 'none';
+        }
+    }, true); // KRİTİK: 'true' (Capture) modu olayı aşağıya sızdırmaz!
+});
+
+    <script>
+        const { ipcRenderer } = require('electron');
+        const { exec } = require('child_process');
+        const path = require('path'); // "Open Icons Folder" için bu eksikti, eklendi!
+
+        let allShortcuts = []; 
+        let currentActionId = null;
+        let currentEditingGroup = { name: null, type: null };
+
+        const addModal = document.getElementById('add-modal');
+        const modalAddFile = document.getElementById('modal-add-file');
+        const modalAddApp = document.getElementById('modal-add-app');
+        const modalAddWebsite = document.getElementById('modal-add-website');
+        const modalAddDevice = document.getElementById('modal-add-device');
+        const renameModal = document.getElementById('rename-modal');
+        const deleteModal = document.getElementById('delete-modal');
+        const moveNewGroupModal = document.getElementById('move-new-group-modal');
+        const searchInput = document.querySelector('.search-box input');
+
+        window.openRenameGroupModal = (groupName, type) => {
+            currentEditingGroup = { name: groupName, type: type };
+            document.getElementById('input-rename-group-name').value = groupName;
+            document.getElementById('modal-rename-group').style.display = 'flex';
+        };
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            renderDrives(); 
+            allShortcuts = await ipcRenderer.invoke('load-shortcuts');
+            renderAllShortcuts();
+
+            function updateClock() {
+                const now = new Date();
+                const dateBox = document.getElementById('clock-date');
+                const timeBox = document.getElementById('clock-time');
+                
+                if(dateBox && timeBox) {
+                    const day = String(now.getDate()).padStart(2, '0');
+                    const month = String(now.getMonth() + 1).padStart(2, '0');
+                    const year = now.getFullYear();
+                    
+                    const langSelect = document.getElementById('setting-lang');
+                    const currentLang = langSelect ? langSelect.value : 'tr'; 
+                    
+                    const localeStr = currentLang === 'tr' ? 'tr-TR' : 'en-US';
+                    const weekday = now.toLocaleDateString(localeStr, { weekday: 'long' });
+                    
+                    dateBox.innerText = `${day}.${month}.${year}, ${weekday}`;
+                    timeBox.innerText = now.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                }
+            }
+            setInterval(updateClock, 1000); 
+            updateClock(); 
+        });
+
+        function getFileIcon(filePath) {
+            if (!filePath) return 'file.png';
+            const ext = filePath.split('.').pop().toLowerCase();
+            switch (ext) {
+                case 'xls': case 'xlsx': case 'csv': return 'excel.png';
+                case 'doc': case 'docx': return 'word.png';
+                case 'pdf': return 'pdf.png';
+                case 'ppt': case 'pptx': return 'powerpoint.png';
+                case 'txt': return 'txt.png';
+                case 'jpg': case 'jpeg': case 'png': case 'gif': return 'image.png';
+                case 'mp4': case 'avi': case 'mkv': case 'mov': return 'video.png';
+                case 'zip': return 'zip.png';
+                case 'rar': return 'winrar.png';
+                default: return 'file.png';
+            }
+        }
+
+        async function renderDrives(retry = 0) {
+            const driveContainer = document.getElementById('dynamic-drives');
+            const dashboard = document.getElementById('mini-dashboard');
+            
+            // 1. O anki dili başlangıçta alıyoruz (yükleme mesajı için)
+            let currentLang = localStorage.getItem('gfem_lang') || 'en'; 
+
+            const isInitialLoad = driveContainer.innerHTML === '';
+            const isCurrentlyLoading = driveContainer.innerHTML.includes('Sürücüler taranıyor') || driveContainer.innerHTML.includes('Scanning drives');
+
+            if (retry === 0 && (isInitialLoad || isCurrentlyLoading)) {
+                // Başlangıçtaki dile göre yükleme mesajı
+                const loadingMsg = currentLang === 'tr' ? 'Sürücüler taranıyor, lütfen bekleyin...' : 'Scanning drives, please wait...';
+                driveContainer.innerHTML = `<div style="display: flex; align-items: center; gap: 10px; padding: 15px; color: #5C5CFF; font-weight: 600; font-size: 13px;"><img src="assets/icons/search.png" style="width: 16px; opacity: 0.7; animation: pulse 1.5s infinite;"> ${loadingMsg}</div>`;
+            }
+
+            try {
+                // BİLGİSAYARDAN VERİ BEKLEME AŞAMASI (Asenkron)
+                const disks = await ipcRenderer.invoke('get-disks'); 
+                
+                // DİKKAT: O bekleme süresinde kullanıcı dili değiştirmiş olabilir!
+                // 2. Çizime başlamadan hemen önce dili HAFIZADAN TEKRAR OKUYORUZ.
+                currentLang = localStorage.getItem('gfem_lang') || 'en'; 
+
+                if (!disks || disks.length === 0) { 
+                    if (retry < 5) setTimeout(() => renderDrives(retry + 1), 500); 
+                    else {
+                        const errorMsg = currentLang === 'tr' ? 'Sürücüler okunamadı.' : 'Failed to read drives.';
+                        driveContainer.innerHTML = `<div style="padding: 15px; color: #d93025; font-size: 13px;">${errorMsg}</div>`; 
+                    }
+                    return; 
+                }
+                
+                driveContainer.innerHTML = ''; let totalSystemBytes = 0; let totalFreeBytes = 0;
+                
+                disks.forEach(disk => {
+                    if (!disk.Size) return; totalSystemBytes += disk.Size; totalFreeBytes += disk.FreeSpace;
+                    const letter = disk.DeviceID; const totalGB = (disk.Size / 1073741824).toFixed(1); const freeGB = (disk.FreeSpace / 1073741824).toFixed(1); const percent = (((disk.Size - disk.FreeSpace) / disk.Size) * 100).toFixed(0) + '%'; const isC = letter.toUpperCase().includes('C:');
+                    
+                    // Artık en GÜNCEL dile göre başlık ve detay atıyor
+                    const driveTitle = currentLang === 'tr' ? `Yerel Disk (${letter})` : `Local Disk (${letter})`;
+                    const driveDetails = currentLang === 'tr' ? `${freeGB} GB boş (Toplam: ${totalGB} GB)` : `${freeGB} GB free of ${totalGB} GB`;
+                    
+                    const driveCard = document.createElement('div'); driveCard.className = 'drive-card clickable-drive'; driveCard.onclick = () => exec(`start ${letter}\\`);
+                    driveCard.innerHTML = `<div class="drive-header"><div class="drive-icon"><img src="assets/icons/${isC ? 'drive_c.png' : 'drive_d.png'}"></div><div class="drive-title-area"><span class="drive-title">${driveTitle}</span></div></div><div class="drive-progress"><div class="progress-track"><div class="progress-fill" style="width:${percent}; background-color:${isC ? '#5C5CFF' : '#1E8E3E'};"></div></div></div><div class="drive-details"><span>${driveDetails}</span></div>`;
+                    driveContainer.appendChild(driveCard);
+                });
+                
+                if (totalSystemBytes > 0) {
+                    const usedBytes = totalSystemBytes - totalFreeBytes; const percentUsed = ((usedBytes / totalSystemBytes) * 100).toFixed(1); dashboard.style.display = 'flex';
+                    
+                    const lblTotal = currentLang === 'tr' ? 'Toplam Alan' : 'Total PC Storage';
+                    const lblUsed = currentLang === 'tr' ? 'Kullanılan' : 'Used Space';
+                    const lblFree = currentLang === 'tr' ? 'Boş Alan' : 'Free Space';
+
+                    dashboard.innerHTML = `<div class="dashboard-stat"><span class="stat-label">${lblTotal}</span><span class="stat-value">${(totalSystemBytes / 1073741824).toFixed(1)} GB</span></div><div class="dashboard-stat"><span class="stat-label">${lblUsed}</span><span class="stat-value">${(usedBytes / 1073741824).toFixed(1)} GB</span></div><div class="dashboard-stat" style="border-right: 1px solid rgba(255,255,255,0.3); padding-right: 20px; min-width: auto;"><span class="stat-label">${lblFree}</span><span class="stat-value">${(totalFreeBytes / 1073741824).toFixed(1)} GB</span></div><div class="dashboard-progress-container"><div class="dashboard-progress-fill" style="width: ${percentUsed}%;"></div></div><div class="dashboard-percent">${percentUsed}%</div>`;
+                }
+            } catch (e) { console.error("Drive error:", e); }
+        }
+
+        function updateGroupDropdown(groups, selectId) {
+            const selectElement = document.getElementById(selectId); 
+            if (!selectElement) return;
+            
+            // O anki dili hafızadan alıyoruz
+            const currentLang = localStorage.getItem('gfem_lang') || 'en';
+            const createGroupText = currentLang === 'tr' ? '+ Yeni Grup Oluştur...' : '+ Create New Group...';
+            
+            selectElement.innerHTML = `<option value="NEW_GROUP">${createGroupText}</option>`;
+            
+            groups.forEach(g => { 
+                const opt = document.createElement('option'); 
+                opt.value = g; 
+                opt.innerText = g; 
+                selectElement.insertBefore(opt, selectElement.firstChild); 
+            });
+        }
+
+        function renderAllShortcuts() {
+            // 1. O anki dili hafızadan alıyoruz
+            const currentLang = localStorage.getItem('gfem_lang') || 'en';
+            const isTr = currentLang === 'tr';
+
+            // 2. Başlıkları seçili dile göre dinamik atıyoruz
+            const sectionsData = [
+                { id: 'section-folders', type: 'folder', title: isTr ? 'Klasörler' : 'Folders', selectId: 'select-group' },
+                { id: 'section-files', type: 'file', title: isTr ? 'Dosyalar' : 'Files', selectId: 'select-file-group' },
+                { id: 'section-apps', type: 'app', title: isTr ? 'Uygulamalar' : 'Apps', selectId: 'select-app-group' },
+                { id: 'section-websites', type: 'website', title: isTr ? 'Web Siteleri' : 'Websites', selectId: 'select-website-group' },
+                { id: 'section-devices', type: 'device', title: isTr ? 'Ağ Cihazları' : 'Devices', selectId: 'select-device-group' }
+            ];
+
+            sectionsData.forEach(secData => {
+                const section = document.getElementById(secData.id);
+                // Başlık artık dile tam uyumlu
+                section.innerHTML = `<h2 class="category-title">${secData.title}</h2>`;
+                
+                const items = allShortcuts.filter(s => s.type === secData.type);
+                const groups = [...new Set(items.map(s => s.group))].filter(g => g && g.trim() !== "");
+                updateGroupDropdown(groups, secData.selectId);
+                
+                groups.forEach(groupName => {
+                    const safeGroupID = `group-${secData.type}-${groupName.replace(/[^a-z0-9]/gi, '-')}`;
+                    const groupContainer = document.createElement('div');
+                    groupContainer.className = 'group-container';
+                    groupContainer.innerHTML = `
+                    <div class="group-header-wrapper">
+                <h3 class="group-title">${groupName}</h3>
+                <button class="btn-edit-group" onclick="window.openRenameGroupModal('${groupName.replace(/'/g, "\\'")}', '${secData.type}')" title="${isTr ? 'Grubu Yeniden Adlandır' : 'Rename Group'}">✏️</button>
+            </div>
+            <div class="card-grid" id="${safeGroupID}"></div>`;
+                    section.appendChild(groupContainer);
+                    
+                    const grid = document.getElementById(safeGroupID);
+                    items.filter(s => s.group === groupName).forEach(item => {
+                        const card = createDraggableCard(item, grid, groups);
+                        
+                      
+
+                        grid.appendChild(card);
+                    });
+                });
+            });
+            setupDropZones();
+        }
+
+        function createDraggableCard(item, grid, currentGroups) {
+    const card = document.createElement('div'); 
+    card.className = 'card'; 
+    card.draggable = true; 
+    card.dataset.id = item.id; 
+
+    // --- İKON YOLU BELİRLEME MANTIĞI (DÜZELTİLDİ) ---
+    let finalImgTag = '';
+
+    if (item.customIcon) {
+        // 1. Durum: Kullanıcı özel ikon seçmişse (Tam yol gelir)
+        const cleanPath = item.customIcon.replace(/\\/g, '/');
+        // Cache (önbellek) sorunu olmasın diye sonuna timestamp ekledik
+        finalImgTag = `<img src="file:///${cleanPath}?v=${new Date().getTime()}">`;
+    } else {
+        // 2. Durum: Özel ikon yoksa, varsayılanları kullan
+        let iconSrc = 'folder_card.png';
+        if (item.type === 'file') iconSrc = getFileIcon(item.path);
+        else if (item.type === 'app') iconSrc = 'apps.png';
+        else if (item.type === 'website') iconSrc = 'website.png';
+        else if (item.type === 'device') iconSrc = 'device.png'; 
+        
+        // Varsayılan ikonlar kendi klasöründen (assets/icons) okunur
+        finalImgTag = `<img src="assets/icons/${iconSrc}">`;
+    }
+
+    // Kartın HTML'ini yeni finalImgTag ile oluşturuyoruz
+    card.innerHTML = `<div class="card-icon">${finalImgTag}</div><div class="card-info"><span class="card-title">${item.name}</span></div>`;
+    
+    card.onclick = () => exec(`start "" "${item.path}"`);
+    card.oncontextmenu = (e) => { e.preventDefault(); ipcRenderer.send('show-context-menu', { id: item.id, type: item.type, currentGroups: currentGroups, lang: localStorage.getItem('gfem_lang') || 'en' }); };
+
+    // Kart oluşturulurken içine ekle (Sürükle bırak koruması):
+    card.addEventListener('dragover', (e) => {
+        if (e.dataTransfer.types.includes('Files')) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.dataTransfer.dropEffect = 'none'; 
+        }
+    });
+
+    card.addEventListener('drop', (e) => {
+        if (e.dataTransfer.types.includes('Files')) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    });
+
+    card.addEventListener('dragstart', () => card.classList.add('dragging'));
+    card.addEventListener('dragend', async () => {
+        card.classList.remove('dragging');
+        const allCardsInGrid = [...grid.querySelectorAll('.card')]; 
+        const reorderedIds = allCardsInGrid.map(c => c.dataset.id);
+        const otherItems = allShortcuts.filter(s => !reorderedIds.includes(String(s.id)));
+        const reorderedItems = reorderedIds.map(id => allShortcuts.find(s => String(s.id) === id));
+        allShortcuts = [...otherItems, ...reorderedItems]; 
+        await ipcRenderer.invoke('save-shortcuts', allShortcuts);
+    });
+    
+    return card;
+}
+
+function setupDropZones() {
+    document.querySelectorAll('.card-grid').forEach(grid => {
+        grid.addEventListener('dragover', e => {
+            // --- 1. KİLİT: DIŞ DOSYA KONTROLÜ (Masaüstünden yanlışlıkla dosya atılmasını engeller) ---
+            if (e.dataTransfer && e.dataTransfer.types.includes('Files')) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.dataTransfer.dropEffect = 'none';
+                return; 
+            }
+
+            e.preventDefault(); 
+            const draggingCard = document.querySelector('.dragging'); 
+            if (!draggingCard) return;
+
+            // --- 2. KİLİT: FARKLI GRUBA TAŞIMA KONTROLÜ (Eklediğimiz sihirli kısım) ---
+            // Sürüklenen kartın asıl ait olduğu grup ile farenin üzerinde gezdiği grup farklıysa işlemi durdur!
+            if (draggingCard.parentElement !== grid) {
+                return; 
+            }
+            // --------------------------------------------------------------------------
+
+            const afterElement = getDragAfterElement(grid, e.clientY, e.clientX); 
+            if (afterElement == null) grid.appendChild(draggingCard); 
+            else grid.insertBefore(draggingCard, afterElement);
+        });
+
+        // Bırakma (drop) anında çökmemesi için
+        grid.addEventListener('drop', e => {
+            if (e.dataTransfer && e.dataTransfer.types.includes('Files')) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        });
+    });
+}
+
+        function getDragAfterElement(container, y, x) {
+    // Sürüklenmeyen diğer tüm kartları al
+    const draggableElements = [...container.querySelectorAll('.card:not(.dragging)')];
+
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        
+        // Farenin kartın tam merkezine olan uzaklığını hesapla (X ve Y düzleminde)
+        const offsetX = x - box.left - box.width / 2;
+        const offsetY = y - box.top - box.height / 2;
+
+        // Yatay (Grid) dizilimde X ekseni daha kritiktir
+        if (offsetY < 20 && offsetY > -20 && offsetX < 0 && offsetX > closest.offset) {
+            return { offset: offsetX, element: child };
+        } else {
+            return closest;
+        }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
+
+        // --- KLASÖR EKLEME ---
+        document.getElementById('btn-add-folder').onclick = () => { document.getElementById('input-path').value = ''; document.getElementById('input-name').value = ''; document.getElementById('input-new-group').value = ''; addModal.style.display = 'flex'; const selectGroup = document.getElementById('select-group'); document.getElementById('input-new-group').style.display = (selectGroup.value === 'NEW_GROUP') ? 'block' : 'none'; };
+        document.getElementById('btn-browse').onclick = async () => { const path = await ipcRenderer.invoke('select-folder'); if (path) { document.getElementById('input-path').value = path; if (!document.getElementById('input-name').value) document.getElementById('input-name').value = path.split('\\').pop().substring(0, 15); } };
+        document.getElementById('select-group').addEventListener('change', (e) => { document.getElementById('input-new-group').style.display = (e.target.value === 'NEW_GROUP') ? 'block' : 'none'; });
+        document.getElementById('btn-modal-cancel').onclick = () => addModal.style.display = 'none';
+        document.getElementById('btn-modal-save').onclick = async () => { const name = document.getElementById('input-name').value; const path = document.getElementById('input-path').value; let group = document.getElementById('select-group').value; if(group === 'NEW_GROUP') group = document.getElementById('input-new-group').value; if(name && path) { allShortcuts.push({ id: Date.now().toString(), type: 'folder', name, path, group: group || 'General' }); await ipcRenderer.invoke('save-shortcuts', allShortcuts); renderAllShortcuts(); addModal.style.display = 'none'; } };
+
+        // --- DOSYA EKLEME ---
+        document.getElementById('btn-add-file').onclick = () => { document.getElementById('input-file-path').value = ''; document.getElementById('input-file-name').value = ''; document.getElementById('input-new-file-group').value = ''; modalAddFile.style.display = 'flex'; const selectFileGroup = document.getElementById('select-file-group'); document.getElementById('input-new-file-group').style.display = (selectFileGroup.value === 'NEW_GROUP') ? 'block' : 'none'; };
+        document.getElementById('btn-cancel-file').onclick = () => modalAddFile.style.display = 'none';
+        document.getElementById('btn-browse-file').onclick = async () => {const filePath = await ipcRenderer.invoke('select-file');if (filePath) {document.getElementById('input-file-path').value = filePath;const fileName = filePath.split('\\').pop().split('/').pop();if (!document.getElementById('input-file-name').value){let nameWithoutExtension = fileName.substring(0, fileName.lastIndexOf('.')) || fileName;document.getElementById('input-file-name').value = nameWithoutExtension.substring(0, 15); } } };
+        document.getElementById('select-file-group').addEventListener('change', (e) => { document.getElementById('input-new-file-group').style.display = (e.target.value === 'NEW_GROUP') ? 'block' : 'none'; });
+        document.getElementById('btn-save-file').onclick = async () => { const name = document.getElementById('input-file-name').value; const path = document.getElementById('input-file-path').value; let group = document.getElementById('select-file-group').value; if (group === 'NEW_GROUP') group = document.getElementById('input-new-file-group').value.trim(); if (name && path) { allShortcuts.push({ id: Date.now().toString(), type: 'file', name, path, group: group || 'General' }); await ipcRenderer.invoke('save-shortcuts', allShortcuts); renderAllShortcuts(); modalAddFile.style.display = 'none'; } };
+
+        // --- APP EKLEME ---
+        let systemApps = [];
+        async function loadSystemApps() {
+            try {
+                systemApps = await ipcRenderer.invoke('get-installed-apps');
+                const datalist = document.getElementById('system-apps-list');
+                datalist.innerHTML = '';
+                systemApps.forEach(app => { const option = document.createElement('option'); option.value = app.name; datalist.appendChild(option); });
+            } catch (error) { console.error(error); }
+        }
+
+        document.getElementById('btn-add-app').onclick = () => {
+            const searchInput = document.getElementById('input-app-search');
+            searchInput.value = ''; searchInput.removeAttribute('list'); 
+            document.getElementById('input-app-path').value = '';
+            document.getElementById('input-app-name').value = '';
+            document.getElementById('input-new-app-group').value = '';
+            document.getElementById('system-app-select').value = "";
+            modalAddApp.style.display = 'flex';
+            const selectAppGroup = document.getElementById('select-app-group');
+            document.getElementById('input-new-app-group').style.display = (selectAppGroup.value === 'NEW_GROUP') ? 'block' : 'none';
+            if (systemApps.length === 0) loadSystemApps();
+        };
+
+        document.getElementById('input-app-search').addEventListener('input', (e) => {
+            const searchInput = document.getElementById('input-app-search');
+            const val = e.target.value;
+            if (val.trim() === '') searchInput.removeAttribute('list'); else searchInput.setAttribute('list', 'system-apps-list');
+            const matched = systemApps.find(app => app.name === val);
+            if (matched) { document.getElementById('input-app-path').value = matched.path; document.getElementById('input-app-name').value = matched.name.substring(0, 15); }
+        });
+
+        document.getElementById('btn-cancel-app').onclick = () => modalAddApp.style.display = 'none';
+        document.getElementById('select-app-group').addEventListener('change', (e) => { document.getElementById('input-new-app-group').style.display = (e.target.value === 'NEW_GROUP') ? 'block' : 'none'; });
+
+        document.getElementById('btn-save-app').onclick = async () => {
+            const name = document.getElementById('input-app-name').value;
+            const path = document.getElementById('input-app-path').value;
+            let group = document.getElementById('select-app-group').value;
+            if (group === 'NEW_GROUP') group = document.getElementById('input-new-app-group').value.trim();
+            if (!path) { alert("Lütfen uygulamayı listeden seçin!"); return; }
+            if (name && path) { allShortcuts.push({ id: Date.now().toString(), type: 'app', name, path, group: group || 'General' }); await ipcRenderer.invoke('save-shortcuts', allShortcuts); renderAllShortcuts(); modalAddApp.style.display = 'none'; }
+        };
+
+        // --- WEB SİTESİ EKLEME ---
+        document.getElementById('btn-add-website').onclick = () => {
+            document.getElementById('input-website-url').value = '';
+            document.getElementById('input-website-name').value = '';
+            document.getElementById('input-new-website-group').value = '';
+            modalAddWebsite.style.display = 'flex';
+            const selectWebsiteGroup = document.getElementById('select-website-group');
+            document.getElementById('input-new-website-group').style.display = (selectWebsiteGroup.value === 'NEW_GROUP') ? 'block' : 'none';
+        };
+
+        document.getElementById('btn-cancel-website').onclick = () => modalAddWebsite.style.display = 'none';
+        document.getElementById('select-website-group').addEventListener('change', (e) => { 
+            document.getElementById('input-new-website-group').style.display = (e.target.value === 'NEW_GROUP') ? 'block' : 'none'; 
+        });
+
+        document.getElementById('btn-save-website').onclick = async () => {
+            const name = document.getElementById('input-website-name').value;
+            let path = document.getElementById('input-website-url').value.trim();
+            let group = document.getElementById('select-website-group').value;
+            
+            if (group === 'NEW_GROUP') group = document.getElementById('input-new-website-group').value.trim();
+            if (!path) { alert("Lütfen bir web sitesi adresi girin!"); return; }
+
+            if (!path.startsWith('http://') && !path.startsWith('https://')) { path = 'https://' + path; }
+
+            if (name && path) { 
+                allShortcuts.push({ id: Date.now().toString(), type: 'website', name, path, group: group || 'General' }); 
+                await ipcRenderer.invoke('save-shortcuts', allShortcuts); renderAllShortcuts(); modalAddWebsite.style.display = 'none'; 
+            }
+        };
+
+        // --- DEVICE EKLEME ---
+        document.getElementById('btn-add-device').onclick = () => {
+            document.getElementById('input-device-url').value = '';
+            document.getElementById('input-device-name').value = '';
+            document.getElementById('input-new-device-group').value = '';
+            modalAddDevice.style.display = 'flex';
+            const selectDeviceGroup = document.getElementById('select-device-group');
+            document.getElementById('input-new-device-group').style.display = (selectDeviceGroup.value === 'NEW_GROUP') ? 'block' : 'none';
+        };
+
+        document.getElementById('btn-cancel-device').onclick = () => modalAddDevice.style.display = 'none';
+        document.getElementById('select-device-group').addEventListener('change', (e) => { 
+            document.getElementById('input-new-device-group').style.display = (e.target.value === 'NEW_GROUP') ? 'block' : 'none'; 
+        });
+
+        document.getElementById('btn-save-device').onclick = async () => {
+            const name = document.getElementById('input-device-name').value;
+            let path = document.getElementById('input-device-url').value.trim();
+            let group = document.getElementById('select-device-group').value;
+            
+            if (group === 'NEW_GROUP') group = document.getElementById('input-new-device-group').value.trim();
+            if (!path) { alert("Lütfen bir IP adresi veya URL girin!"); return; }
+
+            if (!path.startsWith('http://') && !path.startsWith('https://')) { path = 'http://' + path; }
+
+            if (name && path) { 
+                allShortcuts.push({ id: Date.now().toString(), type: 'device', name, path, group: group || 'General' }); 
+                await ipcRenderer.invoke('save-shortcuts', allShortcuts); renderAllShortcuts(); modalAddDevice.style.display = 'none'; 
+            }
+        };
+
+        // --- İKON DEĞİŞTİRME YAKALAYICISI ---
+        //ipcRenderer.on('trigger-change-icon', async (event, id) => {
+         ////   const iconPath = await ipcRenderer.invoke('select-icon');
+          //  if (iconPath) {
+         //       const iconFileName = iconPath.split('\\').pop().split('/').pop();
+         //       const item = allShortcuts.find(s => String(s.id) === String(id));
+          //      if (item) { item.customIcon = iconFileName; await ipcRenderer.invoke('save-shortcuts', allShortcuts); renderAllShortcuts(); }
+          //}
+        //});
+
+        // --- İKON DEĞİŞTİRME YAKALAYICISI (GÜNCEL) ---
+ipcRenderer.on('trigger-change-icon', async (event, id) => {
+    // 1. main.js'den kopyalanan dosyanın tam yolu gelir
+    const iconPath = await ipcRenderer.invoke('select-icon'); 
+    
+    if (iconPath) {
+        const item = allShortcuts.find(s => String(s.id) === String(id));
+        if (item) { 
+            // KRİTİK DEĞİŞİKLİK: Sadece adını değil, TAM YOLU kaydediyoruz!
+            item.customIcon = iconPath; 
+            
+            await ipcRenderer.invoke('save-shortcuts', allShortcuts); 
+            renderAllShortcuts(); 
+        }
+    }
+});
+
+        // --- SAĞ TIK VE DÜZENLEME ---
+        ipcRenderer.on('trigger-rename-modal', (event, id) => { currentActionId = id; const shortcut = allShortcuts.find(s => String(s.id) === String(id)); if (shortcut) { document.getElementById('rename-title').innerText = shortcut.name; document.getElementById('input-rename-name').value = shortcut.name; renameModal.style.display = 'flex'; } });
+        ipcRenderer.on('context-menu-delete', (event, id) => { currentActionId = id; const shortcut = allShortcuts.find(s => String(s.id) === String(id)); if (shortcut) { document.getElementById('delete-modal-title').innerText = shortcut.name; deleteModal.style.display = 'flex'; } });
+        document.getElementById('btn-delete-confirm').onclick = async () => { allShortcuts = allShortcuts.filter(s => String(s.id) !== String(currentActionId)); await ipcRenderer.invoke('save-shortcuts', allShortcuts); renderAllShortcuts(); deleteModal.style.display = 'none'; };
+        document.getElementById('btn-rename-save').onclick = async () => { const newName = document.getElementById('input-rename-name').value; if (newName && newName.trim() !== "") { const item = allShortcuts.find(s => String(s.id) === String(currentActionId)); if (item) { item.name = newName.trim(); await ipcRenderer.invoke('save-shortcuts', allShortcuts); renderAllShortcuts(); } } renameModal.style.display = 'none'; };
+        ipcRenderer.on('context-menu-move', async (event, data) => { const item = allShortcuts.find(s => String(s.id) === String(data.id)); if (item) { item.group = data.newGroup; await ipcRenderer.invoke('save-shortcuts', allShortcuts); renderAllShortcuts(); } });
+        ipcRenderer.on('context-menu-move-new', (event, id) => { currentActionId = id; moveNewGroupModal.style.display = 'flex'; });
+        document.getElementById('btn-move-new-group-save').onclick = async () => { const name = document.getElementById('input-move-new-group-name').value; if (name) { const item = allShortcuts.find(s => String(s.id) === String(currentActionId)); if (item) { item.group = name.trim(); await ipcRenderer.invoke('save-shortcuts', allShortcuts); renderAllShortcuts(); } } moveNewGroupModal.style.display = 'none'; };
+
+        // --- MENÜ VE ARAYÜZ ---
+        document.getElementById('btn-exit').onclick = () => ipcRenderer.send('quit-app');
+        const menuItems = document.querySelectorAll('.nav-menu li, .sidebar-bottom li:not(#btn-exit)');
+        const sections = document.querySelectorAll('.content-section');
+        const actionButtons = document.querySelectorAll('.action-buttons button');
+        
+        menuItems.forEach(item => { 
+            item.addEventListener('click', () => { 
+                searchInput.value = ""; 
+                const searchSection = document.getElementById('section-search-results'); 
+                if (searchSection) searchSection.style.display = 'none'; 
+                
+                menuItems.forEach(i => i.classList.remove('active')); 
+                item.classList.add('active'); 
+                
+                sections.forEach(sec => sec.style.display = 'none'); 
+                
+                const targetId = item.getAttribute('data-target'); 
+                document.getElementById(targetId).style.display = 'block'; 
+                
+                // YENİ EKLENEN KISIM: Eğer "My PC" sekmesine tıklandıysa, sürücüleri anında yenile!
+                if (targetId === 'section-dashboard') {
+                    renderDrives();
+                }
+
+                const targetBtnId = item.getAttribute('data-btn'); 
+                actionButtons.forEach(btn => { 
+                    btn.style.display = (targetBtnId === 'all' || btn.id === targetBtnId) ? 'flex' : 'none'; 
+                }); 
+            }); 
+        });
+
+        // --- ARAMA İŞLEMİ ---
+        let searchTimeout;
+        searchInput.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                const term = e.target.value.toLocaleLowerCase('tr-TR').trim();
+                const allSections = document.querySelectorAll('.content-section'); let searchSection = document.getElementById('section-search-results');
+                if (!searchSection) { searchSection = document.createElement('div'); searchSection.id = 'section-search-results'; searchSection.className = 'content-section'; document.querySelector('.content-area').appendChild(searchSection); }
+                if (term === "") { searchSection.style.display = 'none'; const activeTabId = document.querySelector('.nav-menu li.active').getAttribute('data-target'); document.getElementById(activeTabId).style.display = 'block'; return; }
+                allSections.forEach(sec => sec.style.display = 'none'); searchSection.style.display = 'block';
+                const filteredResults = allShortcuts.filter(item => item.name.toLocaleLowerCase('tr-TR').includes(term)); renderSearchResults(filteredResults);
+            }, 750); 
+        });
+
+        function renderSearchResults(results) {
+            // 1. O anki dili hafızadan alıyoruz
+            const currentLang = localStorage.getItem('gfem_lang') || 'en';
+            const isTr = currentLang === 'tr';
+
+            const contentArea = document.querySelector('.content-area'); document.querySelectorAll('.content-section').forEach(sec => sec.style.display = 'none');
+            let searchSection = document.getElementById('section-search-results'); if (!searchSection) { searchSection = document.createElement('div'); searchSection.id = 'section-search-results'; searchSection.className = 'content-section'; contentArea.appendChild(searchSection); }
+            searchSection.style.display = 'block'; 
+            
+            // 2. Ana Arama başlığını dile göre atıyoruz
+            searchSection.innerHTML = `<h2 class="category-title">${isTr ? 'Arama Sonuçları' : 'Search Results'}</h2>`;
+            
+            // 3. Arama içindeki alt grup başlıklarını dile göre ayarlıyoruz
+            const types = [
+                {key:'folder', title: isTr ? 'Klasörler' : 'Folders', icon:'folder_card.png'}, 
+                {key:'file', title: isTr ? 'Dosyalar' : 'Files', icon:'file.png'}, 
+                {key:'app', title: isTr ? 'Uygulamalar' : 'Apps', icon:'apps.png'}, 
+                {key:'website', title: isTr ? 'Web Siteleri' : 'Websites', icon:'website.png'},
+                {key:'device', title: isTr ? 'Ağ Cihazları' : 'Network Devices', icon:'device.png'}
+            ];
+            
+            types.forEach(type => {
+               const filtered = results.filter(r => r.type === type.key);
+                if (filtered.length > 0) {
+                  const groupWrap = document.createElement('div'); groupWrap.className = 'group-container'; groupWrap.innerHTML = `<h3 class="group-title">${type.title}</h3><div class="card-grid"></div>`;
+                  const grid = groupWrap.querySelector('.card-grid');
+              //      filtered.forEach(item => {
+               //         const card = document.createElement('div'); card.className = 'card'; 
+              //          let iconSrc = item.customIcon || type.icon;
+              //          if (!item.customIcon && item.type === 'file') iconSrc = getFileIcon(item.path);
+              //          card.innerHTML = `<div class="card-icon"><img src="assets/icons/${iconSrc}"></div><div class="card-info"><span class="card-title">${item.name}</span></div>`;
+              //          card.onclick = () => exec(`start "" "${item.path}"`); card.oncontextmenu = (e) => { e.preventDefault(); ipcRenderer.send('show-context-menu', { id: item.id, type: item.type, currentGroups: [] }); };
+               //         grid.appendChild(card);
+               //     });
+
+                    filtered.forEach(item => {
+                        const card = document.createElement('div'); 
+                        card.className = 'card'; 
+                        
+                        // İkon yolunu akıllıca belirliyoruz
+                        let finalIconPath = "";
+                        if (item.customIcon) {
+                            // Özel ikon varsa doğrudan tam yolunu kullan (Başına assets ekleme)
+                            finalIconPath = item.customIcon;
+                        } else {
+                            // Özel ikon yoksa varsayılan ikonu al ve başına assets/icons/ ekle
+                            let defaultIcon = type.icon;
+                            if (item.type === 'file') defaultIcon = getFileIcon(item.path);
+                            finalIconPath = `assets/icons/${defaultIcon}`;
+                        }
+                        
+                        card.innerHTML = `<div class="card-icon"><img src="${finalIconPath}"></div><div class="card-info"><span class="card-title">${item.name}</span></div>`;
+                        card.onclick = () => exec(`start "" "${item.path}"`); 
+                        card.oncontextmenu = (e) => { e.preventDefault(); ipcRenderer.send('show-context-menu', { id: item.id, type: item.type, currentGroups: [] }); };
+                        grid.appendChild(card);
+                    });
+
+
+
+
+
+
+
+
+
+
+               
+                    searchSection.appendChild(groupWrap);
+                }
+            });
+        }
+
+        const btnGrid = document.getElementById('btn-view-grid'); const btnList = document.getElementById('btn-view-list'); const contentArea = document.querySelector('.content-area');
+        btnGrid.addEventListener('click', () => { btnGrid.classList.add('active'); btnList.classList.remove('active'); contentArea.classList.remove('list-mode'); });
+        btnList.addEventListener('click', () => { btnList.classList.add('active'); btnGrid.classList.remove('active'); contentArea.classList.add('list-mode'); });
+
+        document.getElementById('btn-save-rename-group').onclick = async () => {
+            const newName = document.getElementById('input-rename-group-name').value.trim();
+            if (newName && newName !== currentEditingGroup.name) {
+                allShortcuts.forEach(item => {
+                    if (item.type === currentEditingGroup.type && item.group === currentEditingGroup.name) {
+                        item.group = newName;
+                    }
+                });
+                await ipcRenderer.invoke('save-shortcuts', allShortcuts);
+                renderAllShortcuts(); 
+            }
+            document.getElementById('modal-rename-group').style.display = 'none';
+        };
+
+        document.getElementById('btn-cancel-rename-group').onclick = () => {
+            document.getElementById('modal-rename-group').style.display = 'none';
+        };
+
+        // --- SÜRÜCÜLERİ MANUEL YENİLEME BUTONU ---
+        document.getElementById('btn-refresh-drives').onclick = () => {
+            renderDrives();
+        };
+
+        // =================================================================
+        // DİL ÇEVİRİ SÖZLÜĞÜ VE MOTORU (HAFIZA İLE BİRLİKTE ÇALIŞIR)
+        // =================================================================
+        const trDict = {
+            // -- ANA ARAYÜZ --
+            "My PC": "Bilgisayarım",
+            "Folders": "Klasörler",
+            "Files": "Dosyalar",
+            "Apps": "Uygulamalar",
+            "Websites": "Web Siteleri",
+            "Devices": "Ağ Cihazları",
+            "Settings": "Ayarlar",
+            "Help": "Yardım",
+            "Exit": "Çıkış",
+            "Add a folder": "Klasör Ekle",
+            "Add a file": "Dosya Ekle",
+            "Add an app": "Uygulama Ekle",
+            "Add a website": "Site Ekle",
+            "Add a device": "Cihaz Ekle",
+            "Local Drives": "Yerel Sürücüler",
+            "Refresh": "Yenile",
+
+            // -- AYARLAR MENÜSÜ --
+            "Appearance": "Görünüm",
+            "Font Family": "Yazı Tipi",
+            "Montserrat (Default)": "Montserrat (Varsayılan)",
+            "Theme Mode": "Tema Modu",
+            "Light Mode": "Aydınlık Mod", 
+            "Dark Mode": "Karanlık Mod",
+            "Accent Color": "Vurgu Rengi",
+            "GFEM Purple (Default)": "GFEM Moru (Varsayılan)",
+            "Ocean Blue": "Okyanus Mavisi",
+            "Emerald Green": "Zümrüt Yeşili",
+            "Sunset Orange": "Gün Batımı Turuncusu",
+            "Language & System": "Dil ve Sistem",
+            "System Language": "Sistem Dili",
+            "Tools": "Araçlar",
+            "Open Icons Folder": "İkon Klasörünü Aç",
+            "Backup Shortcuts Data": "Kısayolları Yedekle",
+            "Restore Shortcuts Data": "Kısayolları Geri Yükle",
+            "Run on Startup": "Açılışta Başlat",
+            "Disabled": "Kapalı",
+            "Enabled": "Açık",
+            "Reset to Defaults": "Fabrika Ayarlarına Dön",
+            "About": "Hakkında",
+            "Designed by GFEM Team for maximum productivity.": "GFEM Ekibi tarafından maksimum verimlilik için tasarlandı.",
+
+            // -- YARDIM MENÜSÜ--
+
+            "Help & Information": "Yardım & Bilgi",
+            "About Application": "Uygulama Hakkında",
+            "Version 1.0.4 (May 2026):": "Versiyon: 1.0.4 (Mayıs 2026)",
+            "Designer: Designed by GFEM Team for maximum productivity.": "Tasarımcı: GFEM Ekibi tarafından maksimum verimlilik için tasarlandı.",
+            "User Guide & FAQ": "Kullanım Kılavuzu & SSS",
+            "🚀 Shortcut Operations": "🚀 Kısayol İşlemleri", 
+            "Adding:": "Ekleme:",
+            "You can easily add and categorize your content using the 'Add XXX' buttons in the top menu.(Shortcut names are limited to a maximum of 15 characters).": "Üst menüde yer alan 'Add XXX' butonlarını kullanarak içeriklerinizi kolayca ekleyebilir ve gruplandırabilirsiniz.(Kısayol isimleri en fazla 15 karakter ile sınırlıdır).",
+            "Editing:": "Düzenleme:",
+            "You can right-click any card to 'Rename' it or change its group.": "Herhangi bir karta sağ tıklayarak 'Yeniden Adlandır' diyebilir veya grubunu değiştirebilirsiniz.",
+            "Visualization:": "Görselleştirme:",
+            "You can assign images in .png and .ico formats as icons using the 'Change Icon' option.": "'Change Icon' seçeneği ile .png ve .ico formatındaki görselleri ikon olarak atayabilirsiniz.",
+            "Right-Click Menu:": "Sağ Tık Menüsü:",
+            "Right-click on any shortcut card to access full control. Through this context menu, you can:": "Tam kontrol için herhangi bir kısayol kartına sağ tıklayabilirsiniz. Açılan menü üzerinden şunları yapabilirsiniz:",
+            "Open the file location,": "Dosya konumunu açma,",
+            "Rename the shortcut,": "Kısayolu yeniden adlandırma,",
+            "Move it to a different tab or group,": "Farklı bir sekmeye veya gruba taşıma,",
+            "Assign a custom icon to the card,": "Karta özel yeni bir ikon atama,",
+            "Delete the shortcut.": "Kısayolu silme.",
+            "🎨 Appearance & Personalization": "🎨 Görünüm ve Kişiselleştirme",
+            "Font Family:": "Yazı Tipi:",
+            "You can choose from professional fonts like Montserrat or Roboto to improve readability.": "Okunabilirliği artırmak için Montserrat, Roboto gibi profesyonel fontlar arasından seçim yapabilirsiniz",
+            "Theme Mode:": "Tema Modu:",
+            "You can use 'Dark Mode' to reduce eye strain or 'Light Mode' for a classic look.": "Göz yorgunluğunu azaltmak için 'Koyu Tema' veya klasik bir görünüm için 'Aydınlık Tema' kullanabilirsiniz.",
+            "Accent Color:": "Vurgu Rengi:",
+            "Personalize the active menus, buttons, and lines of the application with your favorite color.": "Uygulamanın aktif menülerini, butonlarını ve çizgilerini favori renginizle kişiselleştirin.",
+            "Window Behavior & Quick Minimize:": "Pencere Davranışı ve Hızlı Küçültme:",
+            "To ensure a seamless workflow and allow consecutive clicks, the Launcher window is designed to always stay on top of other applications. Once you are done, simply right-click on any empty space within the interface to instantly minimize the window to the taskbar.": "Ardışık tıklamalar ve akıcı bir iş akışı sağlamak için Launcher penceresi her zaman diğer uygulamaların üstünde kalacak şekilde tasarlanmıştır. İşleminiz bittiğinde pencereyi anında görev çubuğuna küçültmek için arayüzdeki boş bir alana sağ tıklamanız yeterlidir.",
+            "💻 System & Hardware": "💻 Sistem ve Donanım",
+            "Drive Tracking:": "Sürücü Takibi:",
+            "You can monitor the occupancy rates of your drives live in the 'My PC' tab.Data is updated on every entry or by clicking the 'Refresh' button.": "'My PC' sekmesinde sürücülerin doluluk oranını canlı izleyebilirsiniz. Veriler her girişte veya 'Yenile' butonuna basıldığında güncellenir.",
+            "Auto-Start:": "Otomatik Başlatma:",
+            "Enable 'Run on Startup' from Settings to have the program ready when your computer turns on.": "Bilgisayar açıldığında programın hazır olması için Ayarlar'dan 'Açılışta Başlat'ı aktif edin.", 
+            "❓ Frequently Asked Questions": "❓ Sık Sorulan Sorular",
+            "Q: Will my shortcuts be deleted if I uninstall?": "S: Uygulamayı sildiğimde kısayollarım gider mi?",
+            "A: No, your data is stored safely. We recommend backing up before formatting.": "C: Hayır, kısayol verileriniz bilgisayarınızda güvenle saklanır.",
+            "Q: Why can't I see the icons?": "S: İkonları göremiyorum, neden olabilir?",
+            "A: The source file or icon path might have changed. Re-select the icon to fix it.": "C: Kısayola atadığınız orijinal dosya veya ikon yolu değişmiş olabilir.",
+            "Q: How do I reset the program completely?": "S: Programı tamamen nasıl sıfırlarım?",
+            "A: You can clear all data and preferences using the 'Reset to Defaults' button in the Settings menu.": "C: Ayarlar menüsündeki \"Reset to Defaults\" butonu ile tüm verileri ve tercihleri temizleyebilirsiniz.",
+            "Q: Will my appearance settings be reset when I close the program?": "S: Yaptığım görünüm ayarları programı kapatınca sıfırlanır mı?",
+            "A: No, your selected font, theme, and color settings are saved to local storage and are loaded according to your preferences every time the application starts.": "C: Hayır, seçtiğiniz font, tema ve renk ayarları yerel hafızaya kaydedilir ve uygulama her açıldığında tercihlerinize göre yüklenir.",
+            "Q: How can I reorganize shortcuts and change their groups?": "S: Kısayol yerleşimini ve grupları nasıl değiştirebilirim?",
+            "A: You can rearrange shortcuts by dragging them left or right within a group, or move them to a different group by dragging them onto the desired group header.": "C: Kısayolları grup içerisinde sağa veya sola sürükleyerek sıralayabilir ya da farklı bir grup başlığına taşıyarak kategorisini değiştirebilirsiniz.",
+            "Q: Can I create shortcuts by dragging and dropping files from outside the app?": "S: Dışarıdan dosya sürükleyerek kısayol oluşturabilir miyim?",
+            "A: No. For security and system stability, dragging and dropping external files is disabled. Please use the 'Add' buttons within the menu to create new shortcuts.": "C: Hayır. Güvenlik ve sistem kararlılığı nedeniyle dışarıdan sürükle-bırak yöntemiyle dosya ekleme devre dışı bırakılmıştır. Yeni kısayolları menüdeki 'Ekle' butonlarını kullanarak oluşturabilirsiniz.",
+            "Support": "Destek",
+            "Report Bug / Send Feedback": "Hata Bildir / Geri Bildirim Gönder",
+
+            // -- MODALLAR (PENCERELER) BAŞLIK VE BUTONLAR --
+            "Add New Folder": "Yeni Klasör Ekle",
+            "Folder Path": "Klasör Yolu",
+            "Shortcut Name": "Kısayol Adı",
+            "Group": "Grup",
+            "Cancel": "İptal",
+            "Save": "Kaydet",
+            "Browse": "Gözat",
+            "+ Create New Group...": "+ Yeni Grup Oluştur...",
+            "Add New File": "Yeni Dosya Ekle",
+            "File Path": "Dosya Yolu",
+            "Add New App": "Yeni Uygulama Ekle",
+            "Select an App": "Yüklü Bir Uygulama Seç",
+            "Add New Website": "Yeni Web Sitesi Ekle",
+            "Website URL": "Web Sitesi Linki (URL)",
+            "Add Network Device": "Ağ Cihazı Ekle",
+            "Device IP / URL": "Cihaz IP / Adresi",
+            "Rename Group": "Grubu Yeniden Adlandır",
+            "Rename": "Yeniden Adlandır",
+            "Delete": "Sil",
+            "Delete this shortcut?": "Bu kısayolu silmek istediğinize emin misiniz?",
+            "OK": "Tamam",
+            "Move to Group": "Başka Gruba Taşı",
+            "Move": "Taşı",
+
+            // -- MODAL İÇİ BİLGİ METİNLERİ (PLACEHOLDERS) --
+            "Click 'Browse' to select a folder...": "'Gözat'a tıklayıp klasör seçin...",
+            "Auto-fills after selecting a folder...": "Klasör seçildikten sonra otomatik dolar...",
+            "Click 'Browse' to select a file...": "'Gözat'a tıklayıp dosya seçin...",
+            "Auto-fills after selecting a file...": "Dosya seçildikten sonra otomatik dolar...",
+            "Type to search installed apps...": "Uygulama aramak için yaz...",
+            "Auto-fills after selecting an app...": "Uygulama seçildikten sonra otomatik dolar...",
+            "e.g., www.youtube.com": "örn: www.youtube.com",
+            "Type a name for this site...": "Bu site için bir isim girin...",
+            "e.g., 192.168.1.1": "örn: 192.168.1.1",
+            "Type device name...": "Cihazın adını yaz...",
+            "New Group Name": "Yeni Grup Adı",
+            "Type new group name...": "Yeni grubun adını yaz...",
+            "Manual App Path / Command": "Manuel Uygulama Yolu / Komut",
+            "e.g., C:/... or type command": "Örn: C:/... veya komut yaz",
+            "-- or Select System App --": "-- veya Sistem Uygulaması Seç --",
+            "Alarms & Clock": "Alarmlar ve Saat",
+            "Edge": "Edge",
+            "Snipping Tool": "Ekran Alıntısı",
+            "On-Screen Keyboard": "Ekran Klavyesi",
+            "Movies & TV": "Filmler ve TV",
+            "Photos": "Fotoğraflar",
+            "Weather": "Hava Durumu",
+            "Calculator": "Hesap Makinesi",
+            "Camera": "Kamera",
+            "Character Map": "Karakter Eşlem",
+            "Media Player": "Media Player", 
+            "Notepad": "Not Defteri",
+            "Paint": "Paint",
+            "Teams": "Teams"
+        };
+
+        function changeLanguage(lang) {
+            // 1. STANDART METİNLER: Modal başlıklarını (.modal-header h3), etiketleri (.input-wrapper label) ve butonları (.modal-btn) da radara ekledik.
+            const targetElements = document.querySelectorAll('.nav-menu li, .sidebar-bottom li, .btn, .category-title, .settings-card h3, .settings-card h4, .settings-card p, .settings-card li, .setting-item label, .btn-settings-action, .btn-support, .setting-control option, .about-box p, .modal-header h3, .input-wrapper label, .modal-btn, .modal-body p, #system-app-select option');
+            
+            targetElements.forEach(el => {
+                el.childNodes.forEach(node => {
+                    if (node.nodeType === 3) { 
+                        let text = node.nodeValue.trim();
+                        if (text !== "") {
+                            if (!node.origText) node.origText = text;
+                            if (lang === 'tr' && trDict[node.origText]) {
+                                node.nodeValue = " " + trDict[node.origText] + " ";
+                            } else if (lang === 'en') {
+                                node.nodeValue = " " + node.origText + " ";
+                            }
+                        }
+                    }
+                });
+            });
+
+            // 2. ARAMA KUTUSU: Orijinal arama kutusu
+            const searchInput = document.querySelector('.search-box input');
+            if (searchInput) {
+                if (!searchInput.origPlaceholder) searchInput.origPlaceholder = searchInput.placeholder;
+                searchInput.placeholder = lang === 'tr' ? "Launcher'da her şeyi ara..." : searchInput.origPlaceholder;
+            }
+
+            // 3. YENİ EKLENEN: Modalların içindeki tüm gri bilgi kutularını (placeholders) bulan ve çeviren akıllı döngü
+            const modalInputs = document.querySelectorAll('.modal input');
+            modalInputs.forEach(input => {
+                if (input.placeholder) {
+                    // İlk orijinal İngilizce halini hafızaya al
+                    if (!input.origPlaceholder) input.origPlaceholder = input.placeholder;
+                    
+                    // Dile göre sözlükten çevir
+                    if (lang === 'tr' && trDict[input.origPlaceholder]) {
+                        input.placeholder = trDict[input.origPlaceholder];
+                    } else if (lang === 'en') {
+                        input.placeholder = input.origPlaceholder;
+                    }
+                }
+            });
+        }
+
+        // =================================================================
+        // AYARLAR MOTORU VE HAFIZA (LOCAL STORAGE) YÖNETİMİ
+        // =================================================================
+
+        // 1. FONT MOTORU (Hafızalı)
+        document.getElementById('setting-font').onchange = (e) => {
+            const selectedFont = e.target.value;
+            localStorage.setItem('gfem_font', selectedFont);
+            
+            let dynamicStyle = document.getElementById('global-dynamic-font');
+            if (!dynamicStyle) {
+                dynamicStyle = document.createElement('style');
+                dynamicStyle.id = 'global-dynamic-font';
+                document.head.appendChild(dynamicStyle);
+            }
+            dynamicStyle.innerHTML = `
+                * { font-family: ${selectedFont} !important; }
+                .nav-menu li, .group-title, .card-title, .category-title, .sidebar-section span, .clock-time, .clock-date { font-family: ${selectedFont} !important; }
+            `;
+        };
+
+        // 2. KARANLIK MOD MOTORU (Hafızalı)
+        document.getElementById('setting-theme').onchange = (e) => {
+            const selectedTheme = e.target.value;
+            localStorage.setItem('gfem_theme', selectedTheme);
+            
+            if (selectedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        };
+
+        // 3. DİL MOTORU TETİKLEYİCİSİ (Hafızalı ve Dinamik Yenilemeli)
+        document.getElementById('setting-lang').onchange = (e) => {
+            const selectedLang = e.target.value;
+            localStorage.setItem('gfem_lang', selectedLang); // 1. Yeni dili hafızaya kaydet
+            
+            changeLanguage(selectedLang); // 2. Sabit arayüz metinlerini çevir
+            
+            // 3. DİNAMİK İÇERİKLERİ YENİ DİLE GÖRE BAŞTAN ÇİZ!
+            renderDrives();         // Sürücüleri ve Dashboard'u yeni dille tekrar yükle
+            renderAllShortcuts();   // "Yeni Grup Oluştur" listelerini yeni dille tekrar yükle
+        };
+
+        // 4. İKON KLASÖRÜNÜ AÇMA (path modülü eklendi)
+        document.getElementById('btn-open-icons').onclick = () => {
+        ipcRenderer.send('open-icon-folder'); 
+};
+
+        // 5. VERİ YEDEKLEME (BACKUP)
+        document.getElementById('btn-backup').onclick = () => {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(allShortcuts));
+            const downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            const date = new Date();
+            downloadAnchorNode.setAttribute("download", `GFEM_Backup_${date.getDate()}_${date.getMonth() + 1}_${date.getFullYear()}.json`);
+            document.body.appendChild(downloadAnchorNode);
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+            // Kafa karıştıran alert() mesajı buradan silindi!
+        };
+
+        // --- GERİ YÜKLEME (Yeni eklendi) ---
+        document.getElementById('btn-restore').onclick = async () => {
+            const result = await ipcRenderer.invoke('restore-backup');
+            if (result.success) {
+                allShortcuts = result.data; // Hafızayı yeni verilerle güncelle
+                renderAllShortcuts();       // Ekranı yeni verilere göre baştan çiz
+                
+                // İşlem GERÇEKTEN bitince çıkacak olan teyit mesajı
+                const currentLang = localStorage.getItem('gfem_lang') || 'en';
+                alert(currentLang === 'tr' ? 'Yedek başarıyla geri yüklendi!' : 'Backup restored successfully!');
+            } else if (result.error) {
+                alert("Hata / Error: " + result.error);
+            }
+
+            if (result && result.success) {
+        // BAŞARILI MESAJI
+        const currentLang = localStorage.getItem('gfem_lang') || 'en';
+                alert(currentLang === 'tr' ? 'Yedek başarıyla yüklendi. Ayarların uygulanması için sayfa yenileniyor...' : 'Backup restored successfully. The page is reloading to apply settings...');
+        //alert('Yedek başarıyla yüklendi. Ayarların uygulanması için sayfa yenileniyor...');
+        
+        // --- İŞTE SİHİRLİ SATIR ---
+        // Bu satır sayfayı F5 yapmış gibi yeniler ve tüm JS değişkenlerini günceller.
+        location.reload(); 
+    }
+
+        };
+
+        // =================================================================
+        // UYGULAMA AÇILDIĞINDA HAFIZAYI KONTROL ET VE UYGULA
+        // =================================================================
+        window.addEventListener('DOMContentLoaded', () => {
+            // Dil Hafızasını Yükle
+            const savedLang = localStorage.getItem('gfem_lang') || 'en';
+            const langSelect = document.getElementById('setting-lang');
+            if(langSelect) {
+                langSelect.value = savedLang;
+                changeLanguage(savedLang); // Açılışta zorla çevir
+            }
+
+            // Tema Hafızasını Yükle
+            const savedTheme = localStorage.getItem('gfem_theme') || 'light';
+            const themeSelect = document.getElementById('setting-theme');
+            if(themeSelect) {
+                themeSelect.value = savedTheme;
+                if (savedTheme === 'dark') document.body.classList.add('dark-mode');
+            }
+
+            // Font Hafızasını Yükle
+            const savedFont = localStorage.getItem('gfem_font');
+            if (savedFont) {
+                const fontSelect = document.getElementById('setting-font');
+                if(fontSelect) {
+                    fontSelect.value = savedFont;
+                    fontSelect.dispatchEvent(new Event('change')); // Font motorunu açılışta tetikle
+                }
+            }
+
+            // Sürücü Güncelleme Hafızasını Yükle
+            const savedRefresh = localStorage.getItem('gfem_drive_refresh');
+            if (savedRefresh) {
+                const refreshSelect = document.getElementById('setting-drive-refresh');
+                if (refreshSelect) {
+                    refreshSelect.value = savedRefresh;
+                    refreshSelect.dispatchEvent(new Event('change')); // Açılışta motoru tetikle
+                }
+            }
+        });
+
+        // --- AÇILIŞTA BAŞLAT (Run on Startup) ---
+        const autostartSelect = document.getElementById('setting-autostart');
+        const savedAutostart = localStorage.getItem('gfem_autostart') === 'true';
+        autostartSelect.value = savedAutostart ? "true" : "false";
+
+        autostartSelect.onchange = (e) => {
+            const isEnabled = e.target.value === 'true';
+            localStorage.setItem('gfem_autostart', isEnabled);
+            ipcRenderer.send('toggle-autostart', isEnabled); // Arka plana emir ver
+        };
+
+        // --- FABRİKA AYARLARINA DÖN (Reset) ---
+        document.getElementById('btn-reset').onclick = async () => {
+            const currentLang = localStorage.getItem('gfem_lang') || 'en';
+            const msg = currentLang === 'tr' 
+                ? 'DİKKAT: Tüm kısayollar, gruplar ve ayarlar silinecek! Fabrika ayarlarına dönmek istediğinize emin misiniz?' 
+                : 'WARNING: All shortcuts, groups, and settings will be deleted! Are you sure you want to reset to factory defaults?';
+            
+            if (confirm(msg)) { // Kullanıcıya son bir kez soruyoruz (yanlışlıkla basmasın diye)
+                localStorage.clear(); // Renk, dil, buton hafızasını sil
+                await ipcRenderer.invoke('save-shortcuts', []); // Kısayol dosyasını boşalt
+                ipcRenderer.send('relaunch-app'); // Uygulamayı tertemiz yeniden başlat
+            }
+        };
+
+        // --- DESTEK BUTONU (Mail tetikleyici) ---
+        document.getElementById('btn-support').onclick = () => {
+            const subject = encodeURIComponent("GFEM Launcher - Report Bug (Hata Bildirimi)");
+            const body = encodeURIComponent("Merhaba GFEM Team,\n\nKarşılaştığım sorun/önerim şudur:\n");
+            // Buraya kendi mail adresini yazabilirsin
+            window.location.href = `mailto:support@gfemteam.com?subject=${subject}&body=${body}`;
+        };
+
+        // --- VURGU RENGİ MOTORU ---
+        const accentSelect = document.getElementById('setting-accent-color');
+
+        function applyAccentColor(color) {
+            document.documentElement.style.setProperty('--accent-color', color);
+            // Açık versiyonunu da otomatik oluşturur (Hover efektleri ve arka planlar için)
+            document.documentElement.style.setProperty('--accent-color-light', color + '1a'); 
+        }
+
+        accentSelect.onchange = (e) => {
+            const selectedColor = e.target.value;
+            localStorage.setItem('gfem_accent_color', selectedColor);
+            applyAccentColor(selectedColor);
+        };
+
+        // Sayfa yüklendiğinde hafızadaki rengi hatırla
+        const savedAccent = localStorage.getItem('gfem_accent_color');
+        if (savedAccent) {
+            accentSelect.value = savedAccent;
+            applyAccentColor(savedAccent);
+        }
+
+        const { shell } = require('electron'); // Eğer üstte tanımlı değilse ekleyin
+
+function sendSupportMail() {
+    const email = "destek@gfem.com"; // Buraya kendi mail adresini yazabilirsin
+    const subject = encodeURIComponent("GFEM Launcher - Report Bug / Send Feedback (Hata Bildirimi / Geri Bildirim)");
+    const body = encodeURIComponent("Merhaba,\n\nUygulama ile ilgili geri bildirimim şudur:\n\n");
+    
+    // Kullanıcının varsayılan mail programını açar
+    shell.openExternal(`mailto:${email}?subject=${subject}&body=${body}`);
+}
+
+// index.html içindeki script bölümüne eklenecek
+document.getElementById('system-app-select').addEventListener('change', (e) => {
+    const selectedPath = e.target.value;
+    if (selectedPath) {
+        document.getElementById('input-app-path').value = selectedPath;
+        
+        // Artık çeviri sistemi metni ayarladığı için, direkt menüdeki yazıyı alıyoruz
+        const appName = e.target.options[e.target.selectedIndex].text; 
+        document.getElementById('input-app-name').value = appName;
+        
+        document.getElementById('input-app-search').value = "";
+    }
+});
+
+// EKRANDA BOŞ BİR YERE SAĞ TIKLANDIĞINDA AŞAĞI İNME KODU
+document.addEventListener('contextmenu', (e) => {
+    // Tıklanan yer bir kısayol kartı (.card) DEĞİLSE aşağı in!
+    if (!e.target.closest('.card')) {
+        e.preventDefault(); // Windows'un kendi sağ tık menüsünü engelle
+        ipcRenderer.send('minimize-app'); // main.js'e "aşağı in" emri gönder
+    }
+});
+
+    </script>
+</body>
+</html>

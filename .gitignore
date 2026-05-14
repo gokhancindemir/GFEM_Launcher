@@ -1,0 +1,19 @@
+# Bağımlılıklar (Asla paketlenmemeli/yedeklenmemeli)
+node_modules/
+
+# Paketleme çıktıları
+dist/
+
+# İşletim sistemi ve editör dosyaları
+.DS_Store
+Thumbs.db
+.vscode/
+.eslintcache
+
+# Log dosyaları
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Gizli veriler (Varsa)
+.env

@@ -1,0 +1,404 @@
+:root {
+    /* Varsayılan Vurgu Rengi (Mor) */
+    --accent-color: #5C5CFF; 
+    --accent-color-light: rgba(92, 92, 255, 0.1);
+    /* ... diğer değişkenlerin ... */
+}
+/* 1. YEREL FONT TANIMLAMA */
+@font-face { font-family: 'Montserrat'; src: url('assets/fonts/Montserrat-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'Montserrat'; src: url('assets/fonts/Montserrat-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+
+@font-face { font-family: 'Roboto'; src: url('assets/fonts/Roboto-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'Roboto'; src: url('assets/fonts/Roboto-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+
+@font-face { font-family: 'Inter'; src: url('assets/fonts/Inter-Regular-slnt=0.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'Inter'; src: url('assets/fonts/Inter-Bold-slnt=0.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+
+@font-face { font-family: 'AptosMono'; src: url('assets/fonts/AptosMono.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'AptosMono'; src: url('assets/fonts/AptosMono-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+
+@font-face { font-family: 'FiraSans'; src: url('assets/fonts/FiraSansCondensed-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'FiraSans'; src: url('assets/fonts/FiraSansCondensed-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+
+/* 2. GENEL AYARLAR */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; -webkit-font-smoothing: antialiased; }
+body { background-color: #FAFAFB; color: #333; height: 100vh; overflow: hidden; }
+.app-container { display: flex; height: 100vh; }
+
+/* 3. SIDEBAR (SOL MENÜ) */
+.sidebar { width: 260px; background-color: #F3F3F5; padding: 24px; display: flex; flex-direction: column; border-right: 1px solid #EAEAEA; height: 100vh; }
+.logo-gfem { height: 100px; width: auto; object-fit: contain; margin-bottom: 25px; }
+.section-title-large { font-size: 18px; font-weight: 800; color: #444; letter-spacing: 2px; margin-bottom: 25px; display: block; text-transform: uppercase; }
+.nav-menu { list-style: none; flex-grow: 1; }
+.sidebar-bottom { margin-top: auto; list-style: none; padding-top: 15px; border-top: 1px solid #EAEAEA; }
+.nav-menu li, .sidebar-bottom li { padding: 10px 15px; margin-bottom: 5px; border-radius: 8px; cursor: pointer; font-size: 13px; color: #444; display: flex; align-items: center; gap: 10px; transition: 0.2s; }
+.nav-menu li:hover, .sidebar-bottom li:hover { background-color: #EAEAEA; color: var(--accent-color); transition: 0.2s; }
+.nav-menu li.active { background-color: #FFFFFF; color: var(--accent-color); font-weight: 700; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.icon img { width: 20px; height: 20px; object-fit: contain; }
+
+/* 4. ANA İÇERİK ALANI */
+.main-content { flex-grow: 1; padding: 24px 40px; overflow-y: auto; }
+.search-box { display: flex; align-items: center; background-color: #FFFFFF; border: 1px solid #EAEAEA; border-radius: 20px; padding: 8px 20px; width: 60%; margin-bottom: 30px; }
+.search-box input { border: none; outline: none; width: 100%; margin-left: 10px; font-size: 13px; }
+.action-buttons { display: flex; gap: 12px; margin-bottom: 30px; }
+.btn { padding: 8px 16px; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.2s; }
+.btn-blue { background-color: #E8F0FE; color: #1A73E8; }
+.btn-green { background-color: #E6F4EA; color: #1E8E3E; }
+.btn-purple { background-color: #F3E8FD; color: #9333EA; }
+.btn-orange { background-color: #FEF3E8; color: #E85D04; }
+.category-title { font-size: 18px; font-weight: 700; margin-bottom: 20px; border-left: 4px solid #C084FC; padding-left: 10px; }
+
+/* 5. KARTLAR VE DRIVELAR */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; min-height: 50px; }
+.card { background-color: #FFF; border: 1px solid #F0F0F0; border-radius: 12px; padding: 15px; text-align: center; cursor: grab; transition: 0.2s; }
+.card:active { cursor: grabbing; }
+.card.dragging { opacity: 0.5; border: 2px dashed var(--accent-color); background-color: #F8F9FA; }
+.card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.card-icon img { width: 40px; height: 40px; margin-bottom: 10px; }
+.card-title { font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.drive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.drive-card { background: #FFF; border: 1px solid #EEE; border-radius: 12px; padding: 15px; cursor: pointer; transition: 0.2s; }
+.drive-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.drive-header { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+.drive-icon img { width: 48px; height: 48px; }
+.drive-title { font-size: 14px; font-weight: 700; }
+.progress-track { width: 100%; height: 6px; background: #EEE; border-radius: 3px; overflow: hidden; margin: 10px 0; }
+.progress-fill { height: 100%; transition: 0.5s; }
+.drive-details { font-size: 11px; color: #666; text-align: right; }
+
+/* 6. MODAL (PENCERE) SİSTEMİ */
+.modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center; }
+.modal-content { width: 360px !important; min-width: 360px !important; max-width: 360px !important; box-sizing: border-box !important; background: #FFF; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+.modal-header { padding: 12px 15px; background: #F8F9FA; border-bottom: 1px solid #EEE; }
+.modal-header h3 { font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.modal-body { padding: 15px; }
+.modal-body p { font-size: 12px; color: #666; margin-bottom: 10px; }
+.input-wrapper label { display: block; font-size: 11px; font-weight: 700; color: #888; margin-bottom: 5px; }
+.modal-body input, .modal-body select { width: 100%; padding: 8px; font-size: 12px; border: 1px solid #DDD; border-radius: 5px; outline: none; margin-bottom: 10px; }
+.path-row { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; }
+.path-row input { flex-grow: 1; margin-bottom: 0 !important; }
+#btn-browse, #btn-browse-file { white-space: nowrap; padding: 8px 12px !important; height: 33px; display: flex; align-items: center; justify-content: center; background: #FFF; border: 1px solid #DDD; }
+.modal-footer { padding: 10px 15px; background: #F8F9FA; border-top: 1px solid #EEE; display: flex; justify-content: flex-end; gap: 8px; }
+.modal-btn { padding: 6px 12px; font-size: 11px; font-weight: 600; cursor: pointer; border-radius: 4px; border: none; transition: 0.2s; }
+.modal-btn.primary { background: var(--accent-color); color: #FFF; }
+.modal-btn.secondary { background: #EEE; color: #333; }
+@keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+/* 7. MİNİ DASHBOARD */
+.mini-dashboard { display: flex; gap: 20px; margin-bottom: 30px; background: linear-gradient(135deg, var(--accent-color) 0%, #8C8CFF 100%); border-radius: 12px; padding: 20px 25px; color: #FFF; box-shadow: 0 5px 15px rgba(92, 92, 255, 0.2); align-items: center; }
+.dashboard-stat { display: flex; flex-direction: column; gap: 5px; min-width: 120px; }
+.stat-label { font-size: 11px; font-weight: 600; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; }
+.stat-value { font-size: 20px; font-weight: 800; }
+.dashboard-progress-container { flex-grow: 1; background: rgba(255, 255, 255, 0.2); height: 8px; border-radius: 4px; overflow: hidden; position: relative; margin: 0 20px; }
+.dashboard-progress-fill { height: 100%; background: #FFF; border-radius: 4px; transition: width 1s ease-out; }
+.dashboard-percent { font-size: 18px; font-weight: 700; min-width: 50px; text-align: right; }
+
+/* 8. GÖRÜNÜM DEĞİŞTİRİCİ VE LİSTE MODU */
+.view-toggle { display: flex; gap: 5px; background: #FFF; border: 1px solid #EAEAEA; padding: 4px; border-radius: 8px; }
+.view-btn { background: transparent; border: none; padding: 4px 12px; border-radius: 5px; cursor: pointer; font-size: 18px; color: #888; transition: 0.2s; display: flex; align-items: center; justify-content: center; }
+.view-btn:hover { background: #F8F9FA; }
+.view-btn.active { background: #E8F0FE; color: var(--accent-color); }
+.content-area.list-mode .card-grid { grid-template-columns: 1fr; gap: 8px; }
+.content-area.list-mode .card { display: flex; align-items: center; padding: 10px 20px; text-align: left; }
+.content-area.list-mode .card-icon img { width: 24px; height: 24px; margin-bottom: 0; margin-right: 15px; }
+.content-area.list-mode .card-title { font-size: 13px; }
+
+/* 9. GRUP KONTEYNERLERİ VE BAŞLIKLARI (FERAH DÜZENLEME) */
+.group-container { 
+    margin-bottom: 50px !important; /* Gruplar arasındaki o kırmızı işaretli boşluğu artırdık */
+}
+
+.group-header-wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 8px;
+}
+
+.group-title { 
+    font-size: 14px; 
+    font-weight: 800; 
+    color: #444; 
+    letter-spacing: 0.5px; 
+    border-bottom: none !important; 
+    margin-bottom: 0 !important;
+}
+
+/* Kalem varsayılan olarak tamamen gizli */
+.btn-edit-group {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0 !important; /* Başlangıçta görünmez yapıyoruz */
+    transition: opacity 0.2s ease-in-out;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
+
+/* Sadece satırın (wrapper) üzerine gelince görünür yap */
+.group-header-wrapper:hover .btn-edit-group {
+    opacity: 0.5 !important; /* Hafif belirginleşir */
+}
+
+/* Kalemin tam üzerine gelince tam parlak olur */
+.btn-edit-group:hover {
+    opacity: 1 !important;
+    transform: scale(1.1);
+}
+
+/* 10. DİNAMİK SAAT TASARIMI (SIDEBAR İÇİN) */
+.live-clock {
+    text-align: center; /* Logoya uyumlu olması için ortaladık */
+    margin-bottom: 15px; /* Logoyla arasına boşluk */
+    padding-bottom: 15px; /* Çizgiyle arasına boşluk */
+    border-bottom: 1px solid #EAEAEA; /* Altına çok şık, menüyle uyumlu ince bir çizgi çektik */
+}
+
+.clock-date {
+    font-size: 11px;
+    font-weight: 700;
+    color: #888;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.clock-time {
+    font-size: 11px;     /* Tarih ile aynı boyut */
+    font-weight: 700;    /* Tarih ile aynı kalınlık */
+    color: #888;         /* Tarih ile aynı gri renk */
+    letter-spacing: 1px; /* Rakamların arası tarih harfleri gibi ferah olsun */
+    line-height: 1;
+}
+
+.btn-dark { background-color: #E8ECEF; color: #343A40; }
+
+/* 11. SETTINGS (AYARLAR) SAYFASI TASARIMI */
+.settings-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.settings-card {
+    background: #FFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.settings-card h3 {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.setting-item {
+    margin-bottom: 15px;
+}
+
+.setting-item label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+/* Ayarlar sayfası için özel buton ve select stili */
+.setting-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #DDD;
+    font-size: 13px;
+    outline: none;
+    background: #FAFAFB;
+    cursor: pointer;
+}
+
+.btn-settings-action {
+    width: 100%;
+    padding: 12px;
+    background: #F3F3F5;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #444;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-settings-action:hover {
+    background: #E8F0FE;
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* About (Hakkında) Kısmı */
+.about-box {
+    text-align: center;
+    padding: 10px;
+}
+
+.about-logo {
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.version-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--accent-color);
+    color: #FFF;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 800;
+}
+/* 12. KARANLIK MOD (DARK MODE) PREMIUM PALET */
+body.dark-mode { 
+    background-color: #202124 !important; 
+    color: #E8EAED !important; 
+}
+
+/* Sidebar ve Menüler */
+body.dark-mode .sidebar { 
+    background-color: #17181A !important; 
+    border-right-color: #3C4043 !important; 
+}
+body.dark-mode .nav-menu li, 
+body.dark-mode .sidebar-bottom li { 
+    color: #E8EAED !important; 
+}
+body.dark-mode .nav-menu li:hover, 
+body.dark-mode .sidebar-bottom li:hover { 
+    background-color: #3C4043 !important; 
+    color: #8AB4F8 !important; 
+}
+body.dark-mode .nav-menu li.active { 
+    background-color: #3C4043 !important; 
+    color: #8AB4F8 !important; 
+}
+body.dark-mode .section-title-large,
+body.dark-mode .clock-date,
+body.dark-mode .clock-time {
+    color: #9AA0A6 !important;
+}
+
+/* Kartlar ve Ayarlar Kutuları */
+body.dark-mode .card, 
+body.dark-mode .drive-card, 
+body.dark-mode .settings-card { 
+    background-color: #292A2D !important; 
+    border-color: #3C4043 !important; 
+    color: #E8EAED !important; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
+}
+body.dark-mode .group-title, 
+body.dark-mode .category-title,
+body.dark-mode .settings-card h3 { 
+    color: #E8EAED !important; 
+    border-color: #3C4043 !important; 
+}
+
+/* Arama Kutusu ve Butonlar */
+body.dark-mode .search-box, 
+body.dark-mode .view-toggle { 
+    background-color: #292A2D !important; 
+    border-color: #3C4043 !important; 
+}
+body.dark-mode .search-box input { 
+    background-color: transparent !important; 
+    color: #E8EAED !important; 
+}
+body.dark-mode input, 
+body.dark-mode select, 
+body.dark-mode .setting-control { 
+    background-color: #202124 !important; 
+    border-color: #3C4043 !important; 
+    color: #E8EAED !important; 
+}
+body.dark-mode .btn-settings-action { 
+    background-color: #3C4043 !important; 
+    color: #E8EAED !important; 
+    border-color: #5F6368 !important; 
+}
+body.dark-mode .btn-settings-action:hover {
+    background-color: #8AB4F8 !important;
+    color: #202124 !important;
+}
+
+/* Pencereler (Modallar) */
+body.dark-mode .modal-content { 
+    background-color: #292A2D !important; 
+    color: #E8EAED !important; 
+}
+body.dark-mode .modal-header, 
+body.dark-mode .modal-footer { 
+    background-color: #202124 !important; 
+    border-color: #3C4043 !important; 
+}
+body.dark-mode .setting-item label {
+    color: #9AA0A6 !important;
+}
+
+/* 13. BUTON GÖRÜNÜM AYARLARI */
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-3px); /* Yukarı kaldırır */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Kalktığında gölgesini büyütür, derinlik katar */
+}
+
+.modal-btn:hover {
+    transform: translateY(-2px); /* Biraz daha hafif kalksın */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 14- HELP GÖRÜNÜM AYARLARI */
+
+.help-item::first-line {
+    font-weight: bold;
+    color: var(--accent-color); /* Mor rengini de buradan verirsen resimdekiyle tam uyumlu olur */
+}
+
+.help-faq::first-line {
+    font-weight: bold;
+}
+
+.btn-support {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    background-color: #f0f7ff;
+    border: 1px solid #d0e5ff;
+    border-radius: 8px;
+    color: #007bff;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    width: fit-content; /* Çerçevenin çok uzun olmasını engeller */
+    transition: all 0.3s ease;
+}
+
+.btn-support:hover {
+    background-color: #e0efff; /* Arka plan rengi hafif koyulaşır */
+    transform: translateY(-3px); /* Butonu 3 piksel yukarı kaldırır */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Yukarı kalktığını hissettiren hafif bir gölge ekler */
+}

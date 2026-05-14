@@ -1,5 +1,7 @@
 # Bağımlılıklar (Asla paketlenmemeli/yedeklenmemeli)
 node_modules/
+dist/
+build/
 
 # Paketleme çıktıları
 dist/

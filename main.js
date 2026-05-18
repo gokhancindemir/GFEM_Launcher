@@ -253,27 +253,18 @@ ipcMain.on('open-icon-folder', () => {
 autoUpdater.on('update-available', () => {
     dialog.showMessageBox({
         type: 'info',
-        title: 'GFEM Launcher Güncellemesi',
-        message: 'Harika! Yeni bir sürüm bulundu. Arka planda indiriliyor, lütfen çalışmanıza devam edin...'
+        title: 'GFEM_Launcher Update',
+        message: 'Great! A new version has been found. It is downloading in the background, please continue your work...'
     });
 });
 
-// Güncelleme inip kurulmaya hazır olduğunda sor
+// Güncelleme indirmesi TAMAMLANDIĞINDA otomatik kuruluma geç
 autoUpdater.on('update-downloaded', () => {
-    dialog.showMessageBox({
-        type: 'question',
-        title: 'Güncelleme Hazır',
-        message: 'Yeni sürüm başarıyla indirildi. Şimdi yeniden başlatıp kurmak ister misiniz?',
-        buttons: ['Şimdi Yeniden Başlat', 'Daha Sonra']
-    }).then((result) => {
-        // Eğer kullanıcı "Şimdi Yeniden Başlat" (0. buton) derse:
-        if (result.response === 0) {
-            autoUpdater.quitAndInstall();
-        }
-    });
+    // Kullanıcıya hiç sormadan, indirme biter bitmez programı kapat ve kur!
+    autoUpdater.quitAndInstall();
 });
 
-// Olası bir hata durumunda (İsteğe bağlı, hataları görmek için)
+// Olası bir hata durumunda (Hatanın ne olduğunu görmek için pencere açar)
 autoUpdater.on('error', (err) => {
-    console.error('Güncelleme hatası:', err);
+    dialog.showErrorBox('Update Error:', err == null ? "Unknown Error" : (err.stack || err).toString());
 });

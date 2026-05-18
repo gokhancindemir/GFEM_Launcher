@@ -20,6 +20,9 @@
 @font-face { font-family: 'FiraSans'; src: url('assets/fonts/FiraSansCondensed-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
 @font-face { font-family: 'FiraSans'; src: url('assets/fonts/FiraSansCondensed-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
 
+@font-face { font-family: 'LexendDeca'; src: url('assets/fonts/LexendDeca-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'LexendDeca'; src: url('assets/fonts/LexendDeca-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+
 /* 2. GENEL AYARLAR */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; -webkit-font-smoothing: antialiased; }
 body { background-color: #FAFAFB; color: #333; height: 100vh; overflow: hidden; }
@@ -378,6 +381,10 @@ body.dark-mode .setting-item label {
 }
 
 .help-faq::first-line {
+    font-weight: bold;
+}
+
+.help-faq-QA4 {
     font-weight: bold;
 }
 

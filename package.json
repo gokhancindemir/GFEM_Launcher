@@ -1,6 +1,6 @@
 {
   "name": "gfem_launcher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GFEM; Launcher",
   "author": "Gökhan Çindemir",
   "main": "main.js",

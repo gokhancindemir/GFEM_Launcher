@@ -92,6 +92,7 @@
                                     <option value="'Comic Sans MS', sans-serif">Comic Sans MS</option>
                                     <option value="'FiraSans', sans-serif">FiraSans</option>
                                     <option value="'Inter', sans-serif">Inter</option>
+                                    <option value="'LexendDeca', sans-serif">Lexend Deca</option>
                                     <option value="'Segoe UI', sans-serif">Segoe UI</option>
                                     <option value="'Tahoma', sans-serif">Tahoma</option>
                                     <option value="'Times New Roman', sans-serif">Times New Roman</option>
@@ -161,7 +162,7 @@
                             <div class="about-box">
                                 <img src="assets/icons/GFEM.png" class="about-logo">
                                 <p style="font-size: 12px; font-weight: 700; color: #444;">GFEM_Launcher</p>
-                                <span class="version-tag">v1.0.0</span>
+                                <span class="version-tag">v1.0.1</span>
                                 <p style="font-size: 10px; color: #888; margin-top: 10px;">Designed by GFEM Team for maximum productivity.</p>
                             </div>
                         </div>
@@ -180,7 +181,7 @@
         <h3>About Application</h3>
     </div>
     <div style="margin-top: 10px; font-size: 13px;">
-        <p>Version 1.0.4 (May 2026):</p>
+        <p>Version 1.0.1 (June 2026):</p>
         <p>Designer: Designed by GFEM Team for maximum productivity.</p>
     </div>
 </div>
@@ -197,8 +198,8 @@
                 <h4 style="color: var(--accent-color); margin-bottom: 8px;">📌 Shortcut Operations</h4>
                 <ul style="font-size: 13px; line-height: 1.6; padding-left: 18px; list-style-type: '👉 ';">
                     <li class="help-item">Adding:<br>You can easily add and categorize your content using the 'Add XXX' buttons in the top menu.(Shortcut names are limited to a maximum of 15 characters).</li>
-                    <li class="help-item">Editing:<br>You can right-click any card to modify.</li>
-                    <li class="help-item">Visualization:<br>You can assign images in .png formats as icons using the 'Change Icon' option.</li> 
+                    <li class="help-item">Editing:<br>You can right-click any card to modify it or change its group.</li>
+                    <li class="help-item">Visualization:<br>You can assign images in .png or .ico formats as icons using the 'Change Icon' option.</li> 
                     <li class="help-item">Right-Click Menu:<br>Right-click on any shortcut card to access full control. Through this context menu, you can:</li>
                 </ul>
                         <ul style="font-size: 13px; line-height: 1.6; padding-left: 60px; list-style-type: '🔹 ';">
@@ -237,30 +238,60 @@
         <!-- Sık Sorulan Sorular -->
         <div style="font-size: 13px;">
             <h4 style="color: var(--accent-color); margin-bottom: 8px;">❓ Frequently Asked Questions</h4>
-            <p class="help-faq" style="margin-top: 10px;">Q: Will my shortcuts be deleted if I uninstall?<br>
-            A: No, your data is stored safely. We recommend backing up before formatting.</p>
+
+            <p class="help-faq" style="margin-top: 10px;">Q.1: What is GFEM_Launcher and what does it do?<br>
+            A.1: GFEM_Launcher is a smart launcher interface that allows you to manage all folders, documents, applications, web sites and network devices from a single hub.</p>
             
-            <p class="help-faq" style="margin-top: 10px;">Q: Why can't I see the icons?<br>
-            A: The source file or icon path might have changed. Re-select the icon to fix it.</p>
+            <p class="help-faq" style="margin-top: 10px;">Q.2: Is GFEM_Launcher compatible with Windows 11?<br>
+            A.2: Yes, our system is fully compatible and optimized to run on Windows 10 and Windows 11 64-bit versions.</p>
             
-            <p class="help-faq" style="margin-top: 10px;">Q: How do I reset the program completely?<br>
-            A: You can clear all data and preferences using the 'Reset to Defaults' button in the Settings menu.</p>
+            <p class="help-faq" style="margin-top: 10px;">Q.3: How can I install GFEM_Launcher?<br>
+            A.3: After downloading the installation package to your computer, double-click on it to start the installation wizard. Once the installation is complete, the GFEM_Launcher icon will appear on your desktop.</p>
+            
+            <p class="help-faq" style="margin-top: 10px;">Q.4: I am getting a security warning during installation, what should I do?<br>
+            A.4: Windows Defender may display a warning for unrecognized installation packages. You can safely complete the installation by clicking on 'More info' and then pressing the 'Run anyway' button.</p>
 
-            <p class="help-faq" style="margin-top: 10px;">Q: Will my appearance settings be reset when I close the program?<br>
-            A: No, your selected font, theme, and color settings are saved to local storage and are loaded according to your preferences every time the application starts.</p>
+            <p class="help-faq" style="margin-top: 10px;">Q.5: How can I edit or customize the shortcuts I have added?<br>
+            A.5: You can access the full control menu by right-clicking on any shortcut card. Through this menu, you can perform the following actions:</p>
+            <ul style="padding-left: 60px; list-style-type: '🔹 ';">
+                    <li><span class="help-faq-QA4">Rename:</span> Change the name of the shortcut (Maximum 15 characters).</li>
+                    <li><span class="help-faq-QA4">Move:</span> Transfer the shortcut to a different group.</li>
+                    <li><span class="help-faq-QA4">Change Icon:</span> Assign a custom image in .png or .ico format to the shortcut.</li>
+                    <li><span class="help-faq-QA4">Delete:</span> Remove the shortcut from the interface (This does not harm your original file).</li>
+                </ul>
+            <p class="help-faq" style="margin-top: 10px;">Q.6: Will my shortcuts be deleted if I uninstall?<br>
+            A.6: No, your data is stored safely. We recommend backing up before formatting.</p>
+            
+            <p class="help-faq" style="margin-top: 10px;">Q.7: Why can't I see the icons?<br>
+            A.7: The source file or icon path might have changed. Re-select the icon to fix it.</p>
+            
+            <p class="help-faq" style="margin-top: 10px;">Q.8: How do I reset the program completely?<br>
+            A.8: You can clear all data and preferences using the 'Reset to Defaults' button in the Settings menu.</p>
 
-            <p class="help-faq" style="margin-top: 10px;">Q: How can I reorganize shortcuts and change their groups?<br>
-            A: You can rearrange shortcuts by dragging them left or right within a group, or move them to a different group by dragging them onto the desired group header.</p>
+            <p class="help-faq" style="margin-top: 10px;">Q.9: Will my appearance settings be reset when I close the program?<br>
+            A.9: No, your selected font, theme, and color settings are saved to local storage and are loaded according to your preferences every time the application starts.</p>
 
-            <p class="help-faq" style="margin-top: 10px;">Q: Can I create shortcuts by dragging and dropping files from outside the app?<br>
-            A: No. For security and system stability, dragging and dropping external files is disabled. Please use the 'Add' buttons within the menu to create new shortcuts.</p>
+            <p class="help-faq" style="margin-top: 10px;">Q.10: How can I reorganize shortcuts and change their groups?<br>
+            A.10: You can rearrange shortcuts by dragging them left or right within a group, or move them to a different group by dragging them onto the desired group header.</p>
+
+            <p class="help-faq" style="margin-top: 10px;">Q.11: Can I create shortcuts by dragging and dropping files from outside the app?<br>
+            A.11: No. For security and system stability, dragging and dropping external files is disabled. Please use the 'Add' buttons within the menu to create new shortcuts.</p>
+
+            <p class="help-faq" style="margin-top: 10px;">Q.12: How can I back up my settings?<br>
+            A.12: You can back up your entire layout using the 'Backup Shortcuts Data' option in the settings section of the program, and instantly transfer it to another computer by selecting the 'Restore Shortcuts Data'.</p>
+            
+            <p class="help-faq" style="margin-top: 10px;">Q.13: What should I do if the program freezes or becomes unresponsive?<br>
+            A.13: For rare freezing issues, it is recommended to completely close the application from the system tray (bottom right corner) and restart it. If the problem persists, please contact our Support team.</p>
+
+            <p class="help-faq" style="margin-top: 10px;">Q.14: How do I update the application to the latest version?<br>
+            A.14: Application features a smart, background auto-update system.</p>
 
         </div>
     </div>
 
     <!-- 3. Destek -->
         <div class="settings-card" style="margin-top: 20px;">
-            <h3 style="color: var(--accent-color);">Destek</h3>
+            <h3 style="color: var(--accent-color);">Support</h3>
             <div class="support-container">
                 <button id="btn-support" class="btn-support" onclick="sendSupportMail()">
                     <span>📧</span>Report Bug / Send Feedback
@@ -1015,7 +1046,7 @@ ipcRenderer.on('trigger-change-icon', async (event, id) => {
             "Add a website": "Site Ekle",
             "Add a device": "Cihaz Ekle",
             "Local Drives": "Yerel Sürücüler",
-            "Refresh": "Yenile",
+            "🔄 Refresh": "🔄 Yenile",
 
             // -- AYARLAR MENÜSÜ --
             "Appearance": "Görünüm",
@@ -1049,13 +1080,13 @@ ipcRenderer.on('trigger-change-icon', async (event, id) => {
             "Version 1.0.4 (May 2026):": "Versiyon: 1.0.4 (Mayıs 2026)",
             "Designer: Designed by GFEM Team for maximum productivity.": "Tasarımcı: GFEM Ekibi tarafından maksimum verimlilik için tasarlandı.",
             "User Guide & FAQ": "Kullanım Kılavuzu & SSS",
-            "🚀 Shortcut Operations": "🚀 Kısayol İşlemleri", 
+            "📌 Shortcut Operations": "🚀 Kısayol İşlemleri", 
             "Adding:": "Ekleme:",
             "You can easily add and categorize your content using the 'Add XXX' buttons in the top menu.(Shortcut names are limited to a maximum of 15 characters).": "Üst menüde yer alan 'Add XXX' butonlarını kullanarak içeriklerinizi kolayca ekleyebilir ve gruplandırabilirsiniz.(Kısayol isimleri en fazla 15 karakter ile sınırlıdır).",
             "Editing:": "Düzenleme:",
-            "You can right-click any card to 'Rename' it or change its group.": "Herhangi bir karta sağ tıklayarak 'Yeniden Adlandır' diyebilir veya grubunu değiştirebilirsiniz.",
+            "You can right-click any card to modify it or change its group.": "Herhangi bir karta sağ tıklayarak onu veya grubunu değiştirebilirsiniz.",
             "Visualization:": "Görselleştirme:",
-            "You can assign images in .png and .ico formats as icons using the 'Change Icon' option.": "'Change Icon' seçeneği ile .png ve .ico formatındaki görselleri ikon olarak atayabilirsiniz.",
+            "You can assign images in .png or .ico formats as icons using the 'Change Icon' option.": "'Change Icon' seçeneği ile .png veya .ico formatındaki görselleri ikon olarak atayabilirsiniz.",
             "Right-Click Menu:": "Sağ Tık Menüsü:",
             "Right-click on any shortcut card to access full control. Through this context menu, you can:": "Tam kontrol için herhangi bir kısayol kartına sağ tıklayabilirsiniz. Açılan menü üzerinden şunları yapabilirsiniz:",
             "Open the file location,": "Dosya konumunu açma,",
@@ -1078,18 +1109,42 @@ ipcRenderer.on('trigger-change-icon', async (event, id) => {
             "Auto-Start:": "Otomatik Başlatma:",
             "Enable 'Run on Startup' from Settings to have the program ready when your computer turns on.": "Bilgisayar açıldığında programın hazır olması için Ayarlar'dan 'Açılışta Başlat'ı aktif edin.", 
             "❓ Frequently Asked Questions": "❓ Sık Sorulan Sorular",
-            "Q: Will my shortcuts be deleted if I uninstall?": "S: Uygulamayı sildiğimde kısayollarım gider mi?",
-            "A: No, your data is stored safely. We recommend backing up before formatting.": "C: Hayır, kısayol verileriniz bilgisayarınızda güvenle saklanır.",
-            "Q: Why can't I see the icons?": "S: İkonları göremiyorum, neden olabilir?",
-            "A: The source file or icon path might have changed. Re-select the icon to fix it.": "C: Kısayola atadığınız orijinal dosya veya ikon yolu değişmiş olabilir.",
-            "Q: How do I reset the program completely?": "S: Programı tamamen nasıl sıfırlarım?",
-            "A: You can clear all data and preferences using the 'Reset to Defaults' button in the Settings menu.": "C: Ayarlar menüsündeki \"Reset to Defaults\" butonu ile tüm verileri ve tercihleri temizleyebilirsiniz.",
-            "Q: Will my appearance settings be reset when I close the program?": "S: Yaptığım görünüm ayarları programı kapatınca sıfırlanır mı?",
-            "A: No, your selected font, theme, and color settings are saved to local storage and are loaded according to your preferences every time the application starts.": "C: Hayır, seçtiğiniz font, tema ve renk ayarları yerel hafızaya kaydedilir ve uygulama her açıldığında tercihlerinize göre yüklenir.",
-            "Q: How can I reorganize shortcuts and change their groups?": "S: Kısayol yerleşimini ve grupları nasıl değiştirebilirim?",
-            "A: You can rearrange shortcuts by dragging them left or right within a group, or move them to a different group by dragging them onto the desired group header.": "C: Kısayolları grup içerisinde sağa veya sola sürükleyerek sıralayabilir ya da farklı bir grup başlığına taşıyarak kategorisini değiştirebilirsiniz.",
-            "Q: Can I create shortcuts by dragging and dropping files from outside the app?": "S: Dışarıdan dosya sürükleyerek kısayol oluşturabilir miyim?",
-            "A: No. For security and system stability, dragging and dropping external files is disabled. Please use the 'Add' buttons within the menu to create new shortcuts.": "C: Hayır. Güvenlik ve sistem kararlılığı nedeniyle dışarıdan sürükle-bırak yöntemiyle dosya ekleme devre dışı bırakılmıştır. Yeni kısayolları menüdeki 'Ekle' butonlarını kullanarak oluşturabilirsiniz.",
+            "Rename:": "Yeniden Adlandır:",
+            "Change the name of the shortcut (Maximum 15 characters).": "Kısayolun ismini değiştirme (Maksimum 15 karakter).",
+            "Move:": "Taşı:",
+            "Transfer the shortcut to a different group.": "Kısayolu farklı bir gruba transfer etme.",
+            "Change Icon:": "İkonu Değiştir:",
+            "Assign a custom image in .png or .ico format to the shortcut.": "Kısayola .png veya .ico formatında dilediğiniz özel bir görsel atama.",
+            "Delete:": "Sil:",
+            "Remove the shortcut from the interface (This does not harm your original file).": "Kısayolu arayüzden kaldırma (Orijinal dosyanıza zarar vermez).",
+            "Q.1: What is GFEM_Launcher and what does it do?": "S.1: GFEM_Launcher nedir ve ne işe yarar?",
+            "A.1: GFEM_Launcher is a smart launcher interface that allows you to manage all folders, documents, applications, web sites and network devices from a single hub.": "C.1: GFEM_Launcher, tüm klasörlerinizi, dosyalarınızı, uygulamalarınızı, web sitelerinizi ve ağ cihazlarınızı tek bir merkezden yönetmenizi sağlayan, akıllı bir başlatıcı arayüzüdür.",
+            "Q.2: Is GFEM_Launcher compatible with Windows 11?": "S.2: GFEM_Launcher Windows 11 ile uyumlu mu?",
+            "A.2: Yes, our system is fully compatible and optimized to run on Windows 10 and Windows 11 64-bit versions.": "C.2: Evet, sistemimiz Windows 10 ve Windows 11 64-bit sürümleriyle tam uyumlu ve optimize çalışmaktadır.",
+            "Q.3: How can I install GFEM_Launcher?": "S.3: GFEM_Launcher'ı nasıl kurabilirim?",
+            "A.3: After downloading the installation package to your computer, double-click on it to start the installation wizard. Once the installation is complete, the GFEM_Launcher icon will appear on your desktop.": "C.3: Kurulum paketini bilgisayarınıza indirdikten sonra üzerine çift tıklayarak kurulum sihirbazını başlatabilirsiniz. Kurulum tamamlandığında masaüstünüzde GFEM_Launcher ikonu belirecektir.",
+            "Q.4: I am getting a security warning during installation, what should I do?": "S.4: Kurulum sırasında güvenlik uyarısı alıyorum, ne yapmalıyım?",
+            "A.4: Windows Defender may display a warning for unrecognized installation packages. You can safely complete the installation by clicking on 'More info' and then pressing the 'Run anyway' button.": "C.4: Windows Defender tanınmayan kurulum paketlerinde uyarı verebilir. 'Ek Bilgi' seçeneğine tıklayıp 'Yine de Çalıştır' butonuna basarak güvenle kurulumu tamamlayabilirsiniz.",
+            "Q.5: How can I edit or customize the shortcuts I have added?": "S.5: Eklediğim kısayolları nasıl özelleştirebilir veya düzenleyebilirim?",
+            "A.5: You can access the full control menu by right-clicking on any shortcut card. Through this menu, you can perform the following actions:": "C.5: Herhangi bir kısayol kartının üzerine sağ tıklayarak tam kontrol menüsüne ulaşabilirsiniz. Açılan bu menü üzerinden şu işlemleri gerçekleştirebilirsiniz:",
+            "Q.6: Will my shortcuts be deleted if I uninstall?": "S.6: Uygulamayı sildiğimde kısayollarım gider mi?",
+            "A.6: No, your data is stored safely. We recommend backing up before formatting.": "C.6: Hayır, kısayol verileriniz bilgisayarınızda güvenle saklanır.",
+            "Q.7: Why can't I see the icons?": "S.7: İkonları göremiyorum, neden olabilir?",
+            "A.7: The source file or icon path might have changed. Re-select the icon to fix it.": "C.7: Kısayola atadığınız orijinal dosya veya ikon yolu değişmiş olabilir.",
+            "Q.8: How do I reset the program completely?": "S.8: Programı tamamen nasıl sıfırlarım?",
+            "A.8: You can clear all data and preferences using the 'Reset to Defaults' button in the Settings menu.": "C.8: Ayarlar menüsündeki \"Reset to Defaults\" butonu ile tüm verileri ve tercihleri temizleyebilirsiniz.",
+            "Q.9: Will my appearance settings be reset when I close the program?": "S.9: Yaptığım görünüm ayarları programı kapatınca sıfırlanır mı?",
+            "A.9: No, your selected font, theme, and color settings are saved to local storage and are loaded according to your preferences every time the application starts.": "C.9: Hayır, seçtiğiniz font, tema ve renk ayarları yerel hafızaya kaydedilir ve uygulama her açıldığında tercihlerinize göre yüklenir.",
+            "Q.10: How can I reorganize shortcuts and change their groups?": "S.10: Kısayol yerleşimini ve grupları nasıl değiştirebilirim?",
+            "A.10: You can rearrange shortcuts by dragging them left or right within a group, or move them to a different group by dragging them onto the desired group header.": "C.10: Kısayolları grup içerisinde sağa veya sola sürükleyerek sıralayabilir ya da farklı bir grup başlığına taşıyarak kategorisini değiştirebilirsiniz.",
+            "Q.11: Can I create shortcuts by dragging and dropping files from outside the app?": "S.11: Dışarıdan dosya sürükleyerek kısayol oluşturabilir miyim?",
+            "A.11: No. For security and system stability, dragging and dropping external files is disabled. Please use the 'Add' buttons within the menu to create new shortcuts.": "C.12-1: Hayır. Güvenlik ve sistem kararlılığı nedeniyle dışarıdan sürükle-bırak yöntemiyle dosya ekleme devre dışı bırakılmıştır. Yeni kısayolları menüdeki 'Ekle' butonlarını kullanarak oluşturabilirsiniz.",
+            "Q.12: How can I back up my settings?": "S.12: Ayarlarımı nasıl yedekleyebilirim?",
+            "A.12: You can back up your entire layout using the 'Backup Shortcuts Data' option in the settings section of the program, and instantly transfer it to another computer by selecting the 'Restore Shortcuts Data'.": "C.12: Programın ayarlar kısmından 'Kısayolları Yedekle' seçeneğini kullanarak oluşturduğunuz tüm düzeni yedekleyebilir, başka bir bilgisayara 'Kısayolları Geri Yükle' diyerek anında taşıyabilirsiniz.",
+            "Q.13: What should I do if the program freezes or becomes unresponsive?": "S.13: Program donarsa veya tepki vermezse ne yapmalıyım?",
+            "A.13: For rare freezing issues, it is recommended to completely close the application from the system tray (bottom right corner) and restart it. If the problem persists, please contact our Support team.": "C.13: Nadir durumlarda oluşan takılmalar için sağ alt köşedeki sistem tepsisinden (tray icon) uygulamayı tamamen kapatıp yeniden başlatmanız önerilir. Sorun devam ederse lütfen destek ekibimizle iletişime geçin.",
+            "Q.14: How do I update the application to the latest version?": "S.14: Uygulamayı yeni sürümlere nasıl güncelleyebilirim?",
+            "A.14: Application features a smart, background auto-update system.": "C.14: Uygulama arka planda çalışan akıllı bir otomatik güncelleme sistemine sahiptir.",
             "Support": "Destek",
             "Report Bug / Send Feedback": "Hata Bildir / Geri Bildirim Gönder",
 
@@ -1152,7 +1207,7 @@ ipcRenderer.on('trigger-change-icon', async (event, id) => {
 
         function changeLanguage(lang) {
             // 1. STANDART METİNLER: Modal başlıklarını (.modal-header h3), etiketleri (.input-wrapper label) ve butonları (.modal-btn) da radara ekledik.
-            const targetElements = document.querySelectorAll('.nav-menu li, .sidebar-bottom li, .btn, .category-title, .settings-card h3, .settings-card h4, .settings-card p, .settings-card li, .setting-item label, .btn-settings-action, .btn-support, .setting-control option, .about-box p, .modal-header h3, .input-wrapper label, .modal-btn, .modal-body p, #system-app-select option');
+            const targetElements = document.querySelectorAll('.nav-menu li, .sidebar-bottom li, .btn, .category-title, .settings-card h3, .settings-card h4, .settings-card p, .settings-card li, .setting-item label, .btn-settings-action, .btn-support, .setting-control option, .about-box p, .modal-header h3, .input-wrapper label, .modal-btn, .modal-body p, #system-app-select option, .help-faq-QA4');
             
             targetElements.forEach(el => {
                 el.childNodes.forEach(node => {

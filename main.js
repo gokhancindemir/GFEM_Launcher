@@ -254,7 +254,7 @@ autoUpdater.on('update-available', () => {
     dialog.showMessageBox({
         type: 'info',
         title: 'GFEM_Launcher Update',
-        message: 'Great! A new version has been found. It is downloading in the background, please continue your work...'
+        message: 'Great! A new version has been found. It is downloading in the background, please continue your work.....'
     });
 });
 
